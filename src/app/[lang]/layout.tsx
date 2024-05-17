@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { fetchData } from '../../api/fetchContentfulData';
+import { getDictionary } from '@/lib/dictionary';
+import { fetchData } from '@/api/fetchContentfulData';
 import { GET_SETTINGS } from '@/api/queries/settings';
 import { GET_FOOTER } from '@/api/queries/footer';
 import { mappedFooterData } from '@/api/mapping/footer';
@@ -51,13 +52,14 @@ export default async function RootLayout({
 
   const settings = await fetchData(GET_SETTINGS, settingsVariables);
   const footer = await fetchData(GET_FOOTER, footerVariables);
+  const { footerText } = await getDictionary(params.lang)
 
   return (
     <html lang={params.lang}>
       <body>
         <Navigation />
         {children}
-        <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} />
+        <Footer data={mappedFooterData(footer)} footerText={footerText} settings={mappedSettingsData(settings)} />
         <Analytics />
         <SpeedInsights />
       </body>
