@@ -1,10 +1,5 @@
-export interface NavigationInterface {
-  name?: string;
-}
+import { mappedButtonsData } from "./buttons";
 
-export const mappedNavigationData = (data: NavigationInterface ) => {
-  console.log('HERE', data)
-  return {
-    name: data.name
-  };
+export const mappedNavigationData = (data: Array ) => {
+  return data.buttons ? mappedButtonsData(data.buttons) : null;
 };
