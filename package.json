@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.4",
     "@emailjs/browser": "^4.3.3",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
+    "contentful": "^10.11.0",
     "emailjs-com": "^3.2.0",
+    "graphql": "^16.8.1",
     "negotiator": "^0.6.3",
     "next": "14.2.3",
     "next-translate": "^2.6.2",
@@ -26,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "daisyui": "^4.11.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
