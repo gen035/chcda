@@ -1,16 +1,19 @@
 import React, { FC } from 'react';
+import { NavigationInterface } from '../api/mapping/navigation';
 import Newsletter from './newsletter';
 
 interface FooterProps {
   data: {
-    disclaimer: string
+    disclaimer?: string,
+    legalLinks: NavigationInterface
   },
   settings: {
-    phone: string,
-    email: string
+    phone?: string,
+    email?: string
   }
 }
 const Footer: FC<FooterProps> = ({ data, settings }) => {
+  console.log(data);
   const year = new Date().getFullYear();
   return (
     <>

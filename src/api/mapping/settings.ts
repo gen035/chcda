@@ -1,12 +1,25 @@
-export const mappedSettingsData = (data: object) => {
+interface Settings {
+  phone?: string;
+  email?: string;
+  location?: {
+    lat?: number;
+    lon?: number;
+  };
+  logoSmall?: {
+    url?: string;
+  };
+  logoFull?: string;
+}
+
+export const mappedSettingsData = (data: { settings: Settings }) => {
   return {
-    phone: data.settings.phone,
-    email: data.settings.email,
+    phone: data.settings.phone ?? '',
+    email: data.settings.email ?? '',
     location: {
-      lat: data.settings.location && data.settings.location.lat,
-      lon: data.settings.location && data.settings.location.lon
+      lat: data.settings.location?.lat ?? 0,
+      lon: data.settings.location?.lon ?? 0
     },
-    logoSmall: data.settings.logoSmall && data.settings.logoSmall.url,
-    logoFull: data.settings.logoFull && data.settings.logoFull
-  }
+    logoSmall: data.settings.logoSmall?.url ?? '',
+    logoFull: data.settings.logoFull ?? ''
+  };
 }
