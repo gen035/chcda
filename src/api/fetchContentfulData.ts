@@ -1,7 +1,5 @@
 // fetchContentfulData.ts
-import { gql } from '@apollo/client';
 import client from './../lib/contentful';
-import { QueryInfo } from '@apollo/client/core/QueryInfo';
 
 export const fetchData = async (query, variables: object) => {
   try {

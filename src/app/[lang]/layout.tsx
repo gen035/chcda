@@ -6,13 +6,13 @@ import { fetchData } from '../../api/fetchContentfulData';
 import { GET_SETTINGS } from '@/api/queries/settings';
 import { GET_FOOTER } from '@/api/queries/footer';
 import { mappedFooterData } from '@/api/mapping/footer';
+import { mappedSettingsData } from '@/api/mapping/settings';
 
 import Footer from '@/components/footer';
 import Navigation from '@/components/navigation';
 import { Locale, i18n } from '../../../i18n-config';
 
 import '../../../styles/index.scss';
-
 
 export const metadata: Metadata = {
   title: 'Genevieve Perron Migneron - Portfolio',
@@ -50,15 +50,14 @@ export default async function RootLayout({
   }
 
   const settings = await fetchData(GET_SETTINGS, settingsVariables);
-  const footerData = await fetchData(GET_FOOTER, footerVariables);
-  console.log(mappedFooterData(footerData));
-  
+  const footer = await fetchData(GET_FOOTER, footerVariables);
+
   return (
     <html lang={params.lang}>
       <body>
         <Navigation />
         {children}
-        <Footer data={mappedFooterData(footerData)} settings={settings} />
+        <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} />
         <Analytics />
         <SpeedInsights />
       </body>
