@@ -11,7 +11,6 @@ interface Header {
 }
 
 export const mappedHeaderData = (data: { header: Header }) => {
-  console.log('header', data)
   return {
     logo: data.header.logo ? mappedImageData(data.header.logo) : null,
     navigation: data.header.navigation ? mappedNavigationData(data.header.navigation) : null

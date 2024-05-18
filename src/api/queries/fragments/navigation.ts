@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { BUTTON_FRAGMENT } from '@/api/queries/button';
+import { BUTTON_FRAGMENT } from '@/api/queries/fragments/button';
 
 export const NAVIGATION_FRAGMENT = gql`
   fragment NavigationFragment on Navigation {

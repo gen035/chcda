@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { NAVIGATION_FRAGMENT } from './navigation';
+import { NAVIGATION_FRAGMENT } from './fragments/navigation';
 
 export const GET_HEADER = gql`
   query Header($preview: Boolean, $id: String!, $locale: String!) {
