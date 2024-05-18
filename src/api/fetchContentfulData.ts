@@ -2,6 +2,7 @@
 import client from './../lib/contentful';
 
 export const fetchData = async (query, variables: object) => {
+  console.log(query)
   try {
     const { data } = await client.query({
       query,

@@ -16,7 +16,6 @@ interface FooterProps {
   }
 }
 const Footer: FC<FooterProps> = ({ data, footerText, settings }) => {
-  console.log(data);
   const year = new Date().getFullYear();
 
   return (
