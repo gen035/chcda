@@ -5,7 +5,9 @@ export const SECTIONS_FRAGMENT = gql`
     sys {
       id
     }
+    type
     title
+    subtitle
     description {
       json
     }

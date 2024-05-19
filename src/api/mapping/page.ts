@@ -1,8 +1,4 @@
-import { metadata } from '@/app/[lang]/layout';
-import { ButtonInterface } from './button';
-import { ImageInterface } from './image';
-import { mappedImageData } from './image';
-import { mappedNavigationData } from './navigation';
+import { Document } from '@contentful/rich-text-types';
 
 interface Page {
   pageCollection?: Array,
@@ -10,38 +6,43 @@ interface Page {
 }
 
 interface Section {
+  type?: string,
+  name?: string,
   title?: string,
-  description?: object,
+  subtitle?: string,
+  description?: Document,
   image?: object
 }
 
 export const mappedPageData = (data: { page: Page }) => {
-  
+  console.log(data)
   if(data?.pageCollection?.items?.length === 0) {
     return null;
   }
 
   const pageData = data.pageCollection.items[0];
-
-  console.log(pageData)
+  
   return {
     id: pageData.sys?.id,
+    name:pageData.name,
     slug: pageData.slug,
-    metadata,
+    metadata: pageData.metaData,
     sections: mappedSections(pageData.sectionsCollection.items)
   };
 };
 
 
 export const mappedSections = (sections: Array) => {
-  const sectionsArray: {id: any; title?: string; description?: object; image?: object; }[] = [];
+  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; image?: object; }[] = [];
   
   sections.forEach((section: Section) => {
-    const { title, description, image } = section;
+    const { title, subtitle, type, description, image } = section;
     sectionsArray.push({
       id: section.sys?.id,
+      type,
       title,
-      description,
+      subtitle,
+      description: description?.json,
       image
     });
   })

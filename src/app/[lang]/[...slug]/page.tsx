@@ -4,10 +4,13 @@ import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { GET_PAGE } from '@/api/queries/page';
 
+import Block from '@/components/Block';
+
 interface PageProps {
   params: {
     locale: string;
     lang: string[];
+    slug: string;
   };
   page: {
     title: string;
@@ -17,7 +20,7 @@ interface PageProps {
   };
 }
 
-const fetchPageData = async (slug: string, locale: string) => {
+const fetchPageData = async (slug: string, locale: string[]) => {
   const preview = process.env.NEXT_NODE_ENV === 'development';
 
   const pageVariables = {
@@ -25,10 +28,9 @@ const fetchPageData = async (slug: string, locale: string) => {
     slug,
     locale: `${locale}-CA`
   }
-  console.log(pageVariables)
   
   const page = await fetchData(GET_PAGE, pageVariables);
-  console.log(page)
+  console.log('PAGE',mappedPageData(page));
   return mappedPageData(page) || null;
 };
 
@@ -42,15 +44,27 @@ const Page = async ({ params }: PageProps) => {
     return <div>Page not found</div>;
   }
 
+  const slugify = (string) => {
+    return string
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+    }
   return (
+    
     <>
       <Head>
         <title>ffff</title>
         <meta name="description" content="{page.description}" />
       </Head>
-      <div>
-      <h1>sup</h1>
-    </div>
+      <div data-name={slugify(page.name ?? '')}>
+        {page?.sections?.length > 0 && page?.sections.map((item, index) => (
+            <Block key={index} data={item} />
+          ))
+        }
+      </div>
     </>
   );
 };
