@@ -31,6 +31,7 @@ import '../../../styles/index.scss';
 //     siteName: 'Portfolio'
 //   }
 // }
+export const fetchCache = 'force-no-store';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ lang: locale }))
