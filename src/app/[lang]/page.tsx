@@ -83,19 +83,12 @@ const Page = async ({ params }: PageProps) => {
       .replace(/-+/g, '-');
     }
   return (
-    
-    <>
-      <Head>
-        <title>ffff</title>
-        <meta name="description" content="{page.description}" />
-      </Head>
-      <div data-name={slugify(page.name ?? '')} className="translate-y-[-80px]">
-        {page?.sections?.length > 0 && page?.sections.map((item: object, index: Number) => (
-            <Block key={index} data={item} />
-          ))
-        }
-      </div>
-    </>
+    <div data-name={slugify(page.name ?? '')} className="translate-y-[-80px]">
+      {page?.sections?.length > 0 && page?.sections.map((item: object, index: Number) => (
+          <Block key={index} data={item} />
+        ))
+      }
+    </div>
   );
 };
 
