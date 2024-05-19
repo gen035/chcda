@@ -17,3 +17,17 @@ export const SECTIONS_FRAGMENT = gql`
     }
   }
 `;
+
+export const SECTION_BLOCKS_FRAGMENT = gql`
+  fragment SectionBlocksFragment on BlockContainer {
+    sys {
+      id
+    }
+    layout
+    blocksCollection(locale: $locale, limit: 10) {
+      items {
+        ...SectionsFragment
+      }
+    }
+  }
+`;

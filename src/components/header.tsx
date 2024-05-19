@@ -11,9 +11,9 @@ interface HeaderProps {
 }
 const Header: FC<HeaderProps> = ({ data }) => {
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1 max-w-32">
-        <Link href="/"><img src={data.logo?.url} title={data.logo?.title}/></Link>
+    <div className="navbar bg-base-100 bg-transparent relative z-10">
+      <div className="flex-1">
+        <Link href="/"><img className="w-[200px]" src={data.logo?.url} title={data.logo?.title}/></Link>
       </div>
       {/* <div className="flex-none">
         <ul className="menu menu-horizontal px-1">

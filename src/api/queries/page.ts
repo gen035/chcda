@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { META_FRAGMENT } from './fragments/meta';
-import { SECTIONS_FRAGMENT } from './fragments/sections';
+import { SECTIONS_FRAGMENT, SECTION_BLOCKS_FRAGMENT } from './fragments/sections';
 
 export const GET_PAGE = gql`
   query Page($preview: Boolean, $locale: String!, $slug: String!) {
@@ -17,13 +17,19 @@ export const GET_PAGE = gql`
         slug
         sectionsCollection(locale: $locale, limit: 10) {
           items {
-            ...SectionsFragment
+            ... on Block {
+              ...SectionsFragment
+            }
+            ... on BlockContainer {
+              ...SectionBlocksFragment
+            }
           }
         }
       }
     }
   }
 }
+${SECTION_BLOCKS_FRAGMENT}
 ${SECTIONS_FRAGMENT}
 ${META_FRAGMENT}
 `;

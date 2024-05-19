@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 
 import { BlockInterface } from './interface';
 import RichText from '@/components/richText';
-import Newsletter from '../newsletter';
 
 const Hero: FC<BlockInterface> = ({ data }) => {
   const divStyle = {

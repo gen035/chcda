@@ -7,12 +7,14 @@ interface Page {
 
 interface Section {
   type?: string,
+  layout?: string,
   name?: string,
   title?: string,
   subtitle?: string,
   description?: Document,
   displayForm?: Boolean,
-  image?: object
+  image?: object,
+  blocksCollection?: object
 }
 
 export const mappedPageData = (data: { page: Page }) => {
@@ -20,7 +22,7 @@ export const mappedPageData = (data: { page: Page }) => {
     return null;
   }
 
-  const pageData = data.pageCollection.items[0];
+  const pageData = data.pageCollection?.items[0];
   
   return {
     id: pageData.sys?.id,
@@ -33,20 +35,29 @@ export const mappedPageData = (data: { page: Page }) => {
 
 
 export const mappedSections = (sections: Array) => {
-  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; displayForm?: boolean; image?: object; }[] = [];
+  console.log('sections',sections)
+  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; displayForm?: boolean; image?: object; layout?: string, blocksCollection?: object }[] = [];
   
   sections.forEach((section: Section) => {
-    const { title, subtitle, type, description, displayForm, image } = section;
-    sectionsArray.push({
-      id: section.sys?.id,
-      type,
-      title,
-      subtitle,
-      description: description?.json,
-      displayForm,
-      image
-    });
+    const { title, subtitle, type, description, displayForm, image, layout, blocksCollection } = section;
+
+    if(!blocksCollection) {
+      sectionsArray.push({
+        id: section.sys?.id,
+        type,
+        title,
+        subtitle,
+        description: description?.json,
+        displayForm,
+        image
+      });
+    } else if(blocksCollection?.items?.length > 0) {
+      const result = {
+        [layout]: mappedSections(blocksCollection?.items)
+      };
+      sectionsArray.push(result);
+    }
+    
   })
-  console.log(sectionsArray)
   return sectionsArray;
 };
