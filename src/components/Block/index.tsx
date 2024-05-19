@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { BlockInterface } from './interface';
 import Full from './full';
+import Hero from './hero';
 
 const Block: FC<BlockInterface> = ({ data }) => {
   console.log('DATA', data)
@@ -8,8 +9,8 @@ const Block: FC<BlockInterface> = ({ data }) => {
     switch (data?.type || 'full') {
       case 'full':
         return <Full data={data} />
-      case 'about':
-        return <h1>About</h1>;
+      case 'hero':
+        return <Hero data={data} />;
       case 'contact':
         return <h1>Contact</h1>;
       default:

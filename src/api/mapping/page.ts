@@ -11,11 +11,11 @@ interface Section {
   title?: string,
   subtitle?: string,
   description?: Document,
+  displayForm?: Boolean,
   image?: object
 }
 
 export const mappedPageData = (data: { page: Page }) => {
-  console.log(data)
   if(data?.pageCollection?.items?.length === 0) {
     return null;
   }
@@ -33,16 +33,17 @@ export const mappedPageData = (data: { page: Page }) => {
 
 
 export const mappedSections = (sections: Array) => {
-  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; image?: object; }[] = [];
+  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; displayForm?: boolean; image?: object; }[] = [];
   
   sections.forEach((section: Section) => {
-    const { title, subtitle, type, description, image } = section;
+    const { title, subtitle, type, description, displayForm, image } = section;
     sectionsArray.push({
       id: section.sys?.id,
       type,
       title,
       subtitle,
       description: description?.json,
+      displayForm,
       image
     });
   })

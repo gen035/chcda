@@ -11,6 +11,7 @@ export const SECTIONS_FRAGMENT = gql`
     description {
       json
     }
+    displayForm
     image {
       url
     }
