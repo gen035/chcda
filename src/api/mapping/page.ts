@@ -12,7 +12,6 @@ interface Section {
   title?: string,
   subtitle?: string,
   description?: Document,
-  displayForm?: Boolean,
   image?: object,
   blocksCollection?: object
 }
@@ -36,10 +35,10 @@ export const mappedPageData = (data: { page: Page }) => {
 
 export const mappedSections = (sections: Array) => {
   console.log('sections',sections)
-  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; displayForm?: boolean; image?: object; layout?: string, blocksCollection?: object }[] = [];
+  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; image?: object; layout?: string, blocksCollection?: object }[] = [];
   
   sections.forEach((section: Section) => {
-    const { title, subtitle, type, description, displayForm, image, layout, blocksCollection } = section;
+    const { title, subtitle, type, description, image, layout, blocksCollection } = section;
 
     if(!blocksCollection) {
       sectionsArray.push({
@@ -48,7 +47,6 @@ export const mappedSections = (sections: Array) => {
         title,
         subtitle,
         description: description?.json,
-        displayForm,
         image
       });
     } else if(blocksCollection?.items?.length > 0) {

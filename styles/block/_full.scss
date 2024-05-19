@@ -1,4 +1,5 @@
 .block-full {
   width: 100%;
   max-width: theme('screens.lg');
+  flex-direction: column-reverse;
 }

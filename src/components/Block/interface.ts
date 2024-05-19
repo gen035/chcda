@@ -6,7 +6,6 @@ export interface BlockInterface {
     title?: string,
     subtitle?: string,
     description?: Document,
-    displayForm?: boolean,
     image?: {
       url?: string
     },

@@ -1,6 +1,7 @@
 .block-hero {
   justify-content: center;
   align-items: center;
+
   .block-content {
     h1 {
       font-size: 28px;
@@ -14,6 +15,16 @@
       font-size: 18px;
       @media (min-width: theme("screens.md")) {
         font-size: 24px;
+      }
+    }
+
+    p {
+      @media (min-width: theme("screens.md")) {
+        max-width: 75%;
+      }
+
+      @media (min-width: theme("screens.lg")) {
+        max-width: 50%;
       }
     }
   }
