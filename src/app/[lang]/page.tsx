@@ -21,13 +21,12 @@ interface PageProps {
 }
 
 const Page = async ({ params }: PageProps) => {
-    const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params.slug.join('/');
+  const preview = process.env.NEXT_NODE_ENV === 'development';
   const locale = params.lang;
 
    const pageVariables = {
     preview,
-    slug,
+    slug: '/',
     locale: `${locale}-CA`
   }
 
