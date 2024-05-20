@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { ACCORDION_FRAGMENT } from './fragments/accordion';
 import { META_FRAGMENT } from './fragments/meta';
 import { SECTIONS_FRAGMENT, SECTION_BLOCKS_FRAGMENT } from './fragments/sections';
 
@@ -23,12 +24,16 @@ export const GET_PAGE = gql`
             ... on BlockContainer {
               ...SectionBlocksFragment
             }
+            ... on Accordion {
+              ...AccordionFragment
+            }
           }
         }
       }
     }
   }
 }
+${ACCORDION_FRAGMENT}
 ${SECTION_BLOCKS_FRAGMENT}
 ${SECTIONS_FRAGMENT}
 ${META_FRAGMENT}

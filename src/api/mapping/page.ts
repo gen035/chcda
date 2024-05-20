@@ -11,8 +11,9 @@ interface Section {
   name?: string,
   title?: string,
   subtitle?: string,
-  description?: Document,
+  description?: string,
   image?: object,
+  accordionItemsCollection?: object,
   blocksCollection?: object
 }
 
@@ -35,18 +36,19 @@ export const mappedPageData = (data: { page: Page }) => {
 
 export const mappedSections = (sections: Array) => {
   console.log('sections',sections)
-  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: object; image?: object; layout?: string, blocksCollection?: object }[] = [];
+  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: string; image?: object; layout?: string, blocksCollection?: object }[] = [];
   
   sections.forEach((section: Section) => {
-    const { title, subtitle, type, description, image, layout, blocksCollection } = section;
-
-    if(!blocksCollection) {
+    const { title, subtitle, type, description, image, layout, accordionItemsCollection, blocksCollection, sys } = section;
+    const isSingleBlock = !blocksCollection && !accordionItemsCollection;
+  
+    if(isSingleBlock) {
       sectionsArray.push({
         id: section.sys?.id,
         type,
         title,
         subtitle,
-        description: description?.json,
+        description,
         image
       });
     } else if(blocksCollection?.items?.length > 0) {
@@ -54,6 +56,15 @@ export const mappedSections = (sections: Array) => {
         type: layout,
         [layout]: mappedSections(blocksCollection?.items)
       };
+      sectionsArray.push(result);
+    } else if(accordionItemsCollection?.items?.length > 0) {
+      console.log(accordionItemsCollection)
+      const result = {
+        type: 'accordion',
+        id: section.sys?.id,
+        title,
+        items: accordionItemsCollection.items
+      }
       sectionsArray.push(result);
     }
     

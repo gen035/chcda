@@ -5,11 +5,19 @@ export interface BlockInterface {
     type?: string,
     title?: string,
     subtitle?: string,
-    description?: Document,
+    description?: string,
     image?: {
       url?: string
     },
     stats?: Array,
     columns?: Array
+  }
+}
+
+export interface AccordionInterface {
+  data?: {
+    type?: string,
+    title?: string,
+    items?: Array
   }
 }

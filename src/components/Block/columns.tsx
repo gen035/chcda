@@ -1,16 +1,8 @@
 import React, { FC } from 'react';
-
+import ReactMarkdown from 'react-markdown';
 import { BlockInterface } from './interface';
-import RichText from '@/components/richText';
 
 const Columns: FC<BlockInterface> = ({ data }) => {
-  console.log('col', data)
-  const divStyle = {
-    backgroundImage: `url('${data?.image?.url}')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  };
-
   const getColumnClass = () => {
     switch (data?.columns.length) {
       case 1:
@@ -30,7 +22,7 @@ const Columns: FC<BlockInterface> = ({ data }) => {
         <div key={index} className="column">
           {column.title && <h1>{column.title}</h1>}
           {column.subtitle && <h2>{column.subtitle}</h2>}
-          {column.description && <RichText richTextDocument={column.description} />}
+          {column.description && <ReactMarkdown>{column.description}</ReactMarkdown>}
         </div>
       ))}
     </div>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import { BlockInterface } from './interface';
-import RichText from '@/components/richText';
 
 const Hero: FC<BlockInterface> = ({ data }) => {
   const divStyle = {
@@ -26,7 +26,7 @@ const Hero: FC<BlockInterface> = ({ data }) => {
       <div className={`content ${data?.type === 'hero' ? 'w-full md:w-3/4 lg:w-1/2' : ''}`}>
         {data?.title && <h1>{data?.title}</h1>}
         {data?.subtitle && <h2>{data?.subtitle}</h2>}
-        {data?.description && <RichText richTextDocument={data.description} />}
+        {data?.description && <ReactMarkdown>{data.description}</ReactMarkdown>}
       </div>
     </div>
   );

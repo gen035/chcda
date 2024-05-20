@@ -8,9 +8,7 @@ export const SECTIONS_FRAGMENT = gql`
     type
     title
     subtitle
-    description {
-      json
-    }
+    description
     image {
       url
     }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import ReactMarkdown from 'react-markdown'
 
 import { BlockInterface } from './interface';
-import RichText from '@/components/richText';
 
 const Stats: FC<BlockInterface> = ({ data }) => {
   console.log(data)
@@ -12,7 +12,7 @@ const Stats: FC<BlockInterface> = ({ data }) => {
           <div key={index} className="stat place-items-center">
             {stat?.title && <div className="stat-title">{stat.title}</div>}
             {stat?.subtitle && <div className="stat-value">{stat.subtitle}</div>}
-            {stat?.description && <div className="stat-desc"><RichText richTextDocument={stat.description} /></div>}
+            {stat?.description && <div className="stat-desc"><ReactMarkdown>{stat.description}</ReactMarkdown></div>}
           </div>
         ))}      
       </div>

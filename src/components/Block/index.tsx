@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { BlockInterface } from './interface';
+import Accordion from './accordion';
 import Columns from './columns';
 import Default from './default';
 import Hero from './hero'
@@ -16,6 +17,8 @@ const Block: FC<BlockInterface> = ({ data }) => {
         return <Columns data={data} />;
       case 'stats':
         return <Stats data={data} />;
+      case 'accordion':
+        return <Accordion data={data} />;
       default:
         return <Default data={data} />;
     }
