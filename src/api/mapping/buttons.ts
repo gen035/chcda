@@ -1,10 +1,10 @@
-import { ButtonInterface, mappedButtonData  } from './button';
+import { ButtonInterface, mappedButtonData } from './button';
 
 export interface ButtonsInterface {
-  items?: Array
+  items?: ButtonInterface[];
 }
 
-export const mappedButtonsData = (data: ButtonsInterface ) => {
+export const mappedButtonsData = (data: ButtonsInterface): ButtonInterface[] => {
   if (!data?.items?.length) {
     return [];
   }

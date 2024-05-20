@@ -2,6 +2,12 @@ import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { BlockInterface } from './interface';
 
+interface Column {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+
 const Columns: FC<BlockInterface> = ({ data }) => {
   const getColumnClass = () => {
     switch (data?.columns.length) {
@@ -16,9 +22,13 @@ const Columns: FC<BlockInterface> = ({ data }) => {
     }
   };
 
+  if (!data?.columns?.length) {
+    return null;
+  }
+
   return (
-    <div className={`columns  mx-auto grid gap-4 px-4 py-8 ${getColumnClass()}`}>
-      {data?.columns.map((column, index) => (
+    <div className={`columns mx-auto grid gap-4 px-4 py-8 ${getColumnClass()}`}>
+      {data.columns.map((column: Column, index: number) => (
         <div key={index} className="column">
           {column.title && <h1>{column.title}</h1>}
           {column.subtitle && <h2>{column.subtitle}</h2>}

@@ -1,23 +1,41 @@
-import { Document } from '@contentful/rich-text-types';
+export interface Image {
+  url?: string;
+}
+
+export interface Stat {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+
+export interface Column {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
 
 export interface BlockInterface {
   data?: {
-    type?: string,
-    title?: string,
-    subtitle?: string,
-    description?: string,
-    image?: {
-      url?: string
-    },
-    stats?: Array,
-    columns?: Array
-  }
+    type?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    image?: Image;
+    stats?: Stat[];
+    columns?: Column[];
+  };
+}
+
+export interface AccordionItem {
+  title?: string;
+  description?: string;
 }
 
 export interface AccordionInterface {
   data?: {
-    type?: string,
-    title?: string,
-    items?: Array
-  }
+    id?: string;
+    type?: string;
+    title?: string;
+    items?: AccordionItem[];
+  };
 }

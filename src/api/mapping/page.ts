@@ -1,73 +1,98 @@
-import { Document } from '@contentful/rich-text-types';
-
 interface Page {
-  pageCollection?: Array,
-  sectionsCollection?: Array
+  sys?: { id: string };
+  name?: string;
+  slug?: string;
+  metaData?: object;
+  sectionsCollection?: {
+    items: Section[];
+  };
 }
 
 interface Section {
-  type?: string,
-  layout?: string,
-  name?: string,
-  title?: string,
-  subtitle?: string,
-  description?: string,
-  image?: object,
-  accordionItemsCollection?: object,
-  blocksCollection?: object
+  sys?: { id: string };
+  type?: string;
+  layout?: string;
+  name?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: object;
+  accordionItemsCollection?: {
+    items: any[];
+  };
+  blocksCollection?: {
+    items: Section[];
+  };
 }
 
-export const mappedPageData = (data: { page: Page }) => {
-  if(data?.pageCollection?.items?.length === 0) {
+interface MappedSection {
+  id?: string;
+  type?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: object;
+  layout?: string;
+  blocksCollection?: MappedSection[];
+  items?: any[];
+}
+
+export const mappedPageData = (data: { pageCollection?: { items: Page[] } }) => {
+  if (!data?.pageCollection?.items?.length) {
     return null;
   }
 
-  const pageData = data.pageCollection?.items[0];
-  
+  const pageData = data.pageCollection.items[0];
+
   return {
     id: pageData.sys?.id,
-    name:pageData.name,
+    name: pageData.name,
     slug: pageData.slug,
     metadata: pageData.metaData,
-    sections: mappedSections(pageData.sectionsCollection.items)
+    sections: mappedSections(pageData.sectionsCollection?.items || []),
   };
 };
 
+export const mappedSections = (sections: Section[]): MappedSection[] => {
+  return sections.map((section: Section) => {
+    const {
+      sys,
+      title,
+      subtitle,
+      type,
+      description,
+      image,
+      layout,
+      accordionItemsCollection,
+      blocksCollection,
+    } = section;
 
-export const mappedSections = (sections: Array) => {
-  console.log('sections',sections)
-  const sectionsArray: {id: any; type?:string, title?: string; subtitle?: string, description?: string; image?: object; layout?: string, blocksCollection?: object }[] = [];
-  
-  sections.forEach((section: Section) => {
-    const { title, subtitle, type, description, image, layout, accordionItemsCollection, blocksCollection, sys } = section;
-    const isSingleBlock = !blocksCollection && !accordionItemsCollection;
-  
-    if(isSingleBlock) {
-      sectionsArray.push({
-        id: section.sys?.id,
-        type,
-        title,
-        subtitle,
-        description,
-        image
-      });
-    } else if(blocksCollection?.items?.length > 0) {
-      const result = {
-        type: layout,
-        [layout]: mappedSections(blocksCollection?.items)
+    const baseSection: MappedSection = {
+      id: sys?.id,
+      type,
+      title,
+      subtitle,
+      description,
+      image,
+      layout,
+    };
+
+    if (blocksCollection?.items?.length) {
+      return {
+        ...baseSection,
+        layout,
+        blocksCollection: mappedSections(blocksCollection.items),
       };
-      sectionsArray.push(result);
-    } else if(accordionItemsCollection?.items?.length > 0) {
-      console.log(accordionItemsCollection)
-      const result = {
-        type: 'accordion',
-        id: section.sys?.id,
-        title,
-        items: accordionItemsCollection.items
-      }
-      sectionsArray.push(result);
     }
-    
-  })
-  return sectionsArray;
+
+    if (accordionItemsCollection?.items?.length) {
+      return {
+        ...baseSection,
+        type: 'accordion',
+        items: accordionItemsCollection.items,
+      };
+    }
+
+    return baseSection;
+  });
 };

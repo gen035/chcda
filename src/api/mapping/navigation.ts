@@ -1,5 +1,8 @@
-import { mappedButtonsData } from "./buttons";
+import { mappedButtonsData } from './buttons';
+export interface NavigationInterface {
+  buttons?: Array;
+}
 
-export const mappedNavigationData = (data: Array ) => {
+export const mappedNavigationData = (data: NavigationInterface ) => {
   return data.buttons ? mappedButtonsData(data.buttons) : null;
 };

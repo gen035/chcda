@@ -1,9 +1,9 @@
 export interface ImageInterface {
-  url: string,
+  url?: string,
   title?: string
 }
 
-export const mappedImageData = (data: Array ) => {
+export const mappedImageData = (data: ImageInterface ) => {
   const { url, title } = data;
   return {
     url,
