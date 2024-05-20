@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
   
   const pageVariables = {
     preview,
-    slug,
+    slug: '/',
     locale: `${locale}-CA`
   }
 

@@ -7,7 +7,7 @@ interface MetaData {
 export const mappedMetaData = (data: { metadata: MetaData }) => {
   if(data?.pageCollection?.items?.length === 0 || !data?.pageCollection?.items[0]?.metaData) {
     return {
-      title: '',
+      title: 'Cité des ainés',
       description: ''
     };
   }
@@ -15,7 +15,7 @@ export const mappedMetaData = (data: { metadata: MetaData }) => {
   const metaData = data.pageCollection?.items[0]?.metaData;
   const { title, description, image } =  metaData;
   return {
-   title,
+   title: 'Cité des ainés - ' + title,
    description,
    image
   };

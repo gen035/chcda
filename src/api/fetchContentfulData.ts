@@ -10,7 +10,7 @@ export const fetchData = async (query, variables: object) => {
 
     return data;
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Error fetching posts:", error, query);
     return [];
   }
 };

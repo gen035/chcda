@@ -51,6 +51,7 @@ export const mappedSections = (sections: Array) => {
       });
     } else if(blocksCollection?.items?.length > 0) {
       const result = {
+        type: layout,
         [layout]: mappedSections(blocksCollection?.items)
       };
       sectionsArray.push(result);

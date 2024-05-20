@@ -9,5 +9,7 @@ export interface BlockInterface {
     image?: {
       url?: string
     },
+    stats?: Array,
+    columns?: Array
   }
 }

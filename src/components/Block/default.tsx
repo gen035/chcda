@@ -4,14 +4,23 @@ import { BlockInterface } from './interface';
 import RichText from '@/components/richText';
 
 const Default: FC<BlockInterface> = ({ data }) => {
+  const getClasses = () => {
+    switch(data?.type) {
+      case 'full':
+        return 'w-full max-w-screen-lg flex-row-reverse'
+      default:
+        return ''
+    }
+  };
+
   return (
-    <section className={`block block-${data.type}`}>
-      <div className="block-content">
+    <section className={`flex mx-auto my-0 px-4 py-0 ${getClasses()}`}>
+      <div className="content">
         {data?.title && <h1>{data.title}</h1>}
         {data?.subtitle && <h2>{data.subtitle}</h2>}
-        {data?.description && <div className="block-content-rich"><RichText richTextDocument={data.description} /></div>}
+        {data?.description && <div className="rich"><RichText richTextDocument={data.description} /></div>}
       </div>
-      <div className="block-media">
+      <div className="media">
         {data?.image?.url && <img className="mx-auto mb-8" src={data.image.url} />}
       </div>
     </section>

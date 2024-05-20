@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { BlockInterface } from './interface';
-import Hero from './hero';
+import Columns from './columns';
 import Default from './default';
+import Hero from './hero'
+import Stats from './stats';
 
 const Block: FC<BlockInterface> = ({ data }) => {
   console.log('DATA', data)
@@ -10,8 +12,10 @@ const Block: FC<BlockInterface> = ({ data }) => {
       case 'hero':
       case 'hero--shallow':
         return <Hero data={data} />;
-      case 'contact':
-        return <h1>Contact</h1>;
+      case 'columns':
+        return <Columns data={data} />;
+      case 'stats':
+        return <Stats data={data} />;
       default:
         return <Default data={data} />;
     }
