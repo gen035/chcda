@@ -81,7 +81,8 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       return {
         ...baseSection,
         layout,
-        blocksCollection: mappedSections(blocksCollection.items),
+        type: layout,
+        [layout]: mappedSections(blocksCollection.items),
       };
     }
 

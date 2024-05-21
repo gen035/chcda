@@ -21,16 +21,6 @@ import { Locale, i18n } from '../../../i18n-config';
 
 import '../../../styles/index.scss';
 
-// export const metadata: Metadata = {
-//   title: 'Genevieve Perron Migneron - Portfolio',
-//   description: 'Senior Manager - Web Development',
-//   openGraph: {
-//     type: 'website',
-//     url: 'https://www.gen-migneron.com',
-//     images: [{'url':'https://www.gen-migneron.com/og.jpg'}],
-//     siteName: 'Portfolio'
-//   }
-// }
 export const fetchCache = 'force-no-store';
 
 export async function generateStaticParams() {

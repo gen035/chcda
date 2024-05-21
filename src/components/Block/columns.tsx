@@ -10,7 +10,7 @@ interface Column {
 
 const Columns: FC<BlockInterface> = ({ data }) => {
   const getColumnClass = () => {
-    switch (data?.columns.length) {
+    switch (data?.columns?.length) {
       case 1:
         return 'grid-cols-1 max-w-screen-sm';
       case 2:

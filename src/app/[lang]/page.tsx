@@ -1,5 +1,6 @@
 import Head from 'next/head'
 
+import ContactForm from '@/components/ContactForm';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
@@ -88,6 +89,7 @@ const Page = async ({ params }: PageProps) => {
           <Block key={index} data={item} />
         ))
       }
+      <ContactForm />
     </div>
   );
 };
