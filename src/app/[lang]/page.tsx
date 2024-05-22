@@ -1,5 +1,6 @@
 import Head from 'next/head'
 
+import { getDictionary } from '@/lib/dictionary';
 import ContactForm from '@/components/ContactForm';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
@@ -59,6 +60,9 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
+
+  const { contact } = await getDictionary(params.lang);
+
   const preview = process.env.NEXT_NODE_ENV === 'development';
   const locale = params.lang;
 
@@ -89,7 +93,7 @@ const Page = async ({ params }: PageProps) => {
           <Block key={index} data={item} />
         ))
       }
-      <ContactForm />
+      <ContactForm form={contact.form} />
     </div>
   );
 };

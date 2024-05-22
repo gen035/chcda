@@ -1,4 +1,14 @@
 {
+  "contact": {
+    "form": {
+      "name": "Nom:",
+      "email": "Courriel:",
+      "subject": "Sujet:",
+      "message": "Message",
+      "submit": "envoyé",
+      "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons sous peu."
+    }
+  },
   "footerText": {
     "informations": "Informations",
     "legal": "Légal"
