@@ -17,8 +17,7 @@ import { mappedSettingsData } from '@/api/mapping/settings';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import { Locale, i18n } from '../../../i18n-config';
-
+import { i18n } from '../../../i18n-config';
 import '../../../styles/index.scss';
 
 export const fetchCache = 'force-no-store';
@@ -35,7 +34,7 @@ export default async function RootLayout({
   params: { lang: Locale }
 }) {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-
+  console.log(params)
   const settingsVariables = {
     preview,
     id: "4EEq37r3UhjLkLhaY2cpta"
@@ -63,7 +62,7 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
-        <Header data={mappedHeaderData(header)}/>
+        <Header data={mappedHeaderData(header)} locale={params.lang} />
         {children}
         <Footer data={mappedFooterData(footer)} footerText={footerText} settings={mappedSettingsData(settings)} />
         <Analytics />

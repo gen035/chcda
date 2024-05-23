@@ -6,7 +6,7 @@ export const BUTTON_FRAGMENT = gql`
     type
     url
     target
-    image {
+    image(locale: "en-CA") {
       url
     }
   }

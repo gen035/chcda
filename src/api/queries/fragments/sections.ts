@@ -9,7 +9,7 @@ export const SECTIONS_FRAGMENT = gql`
     title
     subtitle
     description
-    image {
+    image(locale: "en-CA") {
       url
     }
   }

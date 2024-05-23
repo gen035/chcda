@@ -5,6 +5,7 @@ import Columns from './columns';
 import Default from './default';
 import Hero from './hero'
 import Stats from './stats';
+import Steps from './steps';
 
 const Block: FC<BlockInterface> = ({ data }) => {
   console.log('DATA', data)
@@ -19,6 +20,8 @@ const Block: FC<BlockInterface> = ({ data }) => {
         return <Stats data={data} />;
       case 'accordion':
         return <Accordion data={data} />;
+      case 'steps':
+        return <Steps data={data} />
       default:
         return <Default data={data} />;
     }

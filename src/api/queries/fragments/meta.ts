@@ -4,7 +4,7 @@ export const META_FRAGMENT = gql`
   fragment MetaFragment on MetaData {
     title
     description
-    image {
+    image(locale: "en-CA") {
       url
     }
   }

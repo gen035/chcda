@@ -18,11 +18,16 @@ interface Section {
   description?: string;
   image?: object;
   accordionItemsCollection?: {
+    id: string,
     items: any[];
   };
   blocksCollection?: {
     items: Section[];
   };
+  stepsCollection?: {
+    id: {sys?: {id: string}},
+    items: Section[]
+  }
 }
 
 interface MappedSection {
@@ -65,8 +70,9 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       layout,
       accordionItemsCollection,
       blocksCollection,
+      stepsCollection
     } = section;
-
+  
     const baseSection: MappedSection = {
       id: sys?.id,
       type,
@@ -88,11 +94,19 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
 
     if (accordionItemsCollection?.items?.length) {
       return {
-        ...baseSection,
         type: 'accordion',
+        id: section?.sys?.id,
         items: accordionItemsCollection.items,
       };
     }
+
+    if(stepsCollection?.items?.length) {
+      return {
+        type: 'steps',
+        id: section?.sys?.id,
+        items: stepsCollection?.items
+      }
+    } 
 
     return baseSection;
   });

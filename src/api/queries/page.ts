@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { ACCORDION_FRAGMENT } from './fragments/accordion';
 import { META_FRAGMENT } from './fragments/meta';
 import { SECTIONS_FRAGMENT, SECTION_BLOCKS_FRAGMENT } from './fragments/sections';
+import { STEP_FRAGMENT } from './fragments/step';
 
 export const GET_PAGE = gql`
   query Page($preview: Boolean, $locale: String!, $slug: String!) {
@@ -27,6 +28,9 @@ export const GET_PAGE = gql`
             ... on Accordion {
               ...AccordionFragment
             }
+            ... on StepsContainer {
+              ...StepFragment
+            }
           }
         }
       }
@@ -36,5 +40,6 @@ export const GET_PAGE = gql`
 ${ACCORDION_FRAGMENT}
 ${SECTION_BLOCKS_FRAGMENT}
 ${SECTIONS_FRAGMENT}
+${STEP_FRAGMENT}
 ${META_FRAGMENT}
 `;

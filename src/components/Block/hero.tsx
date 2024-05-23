@@ -22,11 +22,11 @@ const Hero: FC<BlockInterface> = ({ data }) => {
   };
 
   return (
-    <div className={`flex mx-auto mb-8 px-4 py-0 justify-center items-center ${getClasses()}`} style={divStyle}>
-      <div className={`content ${data?.type === 'hero' ? 'w-full md:w-3/4 lg:w-1/2' : ''}`}>
-        {data?.title && <h1>{data?.title}</h1>}
-        {data?.subtitle && <h2>{data?.subtitle}</h2>}
-        {data?.description && <ReactMarkdown>{data.description}</ReactMarkdown>}
+    <div data-id={data.id} className={`flex mx-auto mb-8 px-4 py-0 justify-center items-center ${getClasses()}`} style={divStyle}>
+      <div className={`content ${data?.type === 'hero' ? 'w-full md:w-3/4 lg:w-1/2 flex flex-col' : ''}`}>
+        {data?.title && <h1 className='order-2'>{data?.title}</h1>}
+        {data?.subtitle && <h2 className='order-1'>{data?.subtitle}</h2>}
+        {data?.description && <ReactMarkdown className='order-3'>{data.description}</ReactMarkdown>}
       </div>
     </div>
   );
