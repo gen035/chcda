@@ -12,5 +12,10 @@
   "footerText": {
     "informations": "Informations",
     "legal": "Legal"
+  },
+  "notFound": {
+    "title": "Oops! Page Not Found",
+    "content": "We couldn't find the page you were looking for. It might have been removed, had its name changed, or is temporarily unavailable.",
+    "button": "Back"
   }
 }

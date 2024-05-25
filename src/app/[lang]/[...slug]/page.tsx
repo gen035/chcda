@@ -7,7 +7,7 @@ import { GET_METADATA } from '@/api/queries/metadata';
 import { GET_PAGE } from '@/api/queries/page';
 
 import Block from '@/components/Block';
-
+import NotFound from '@/components/404';
 
 interface PageProps {
   params: {
@@ -72,7 +72,7 @@ const Page = async ({ params }: PageProps) => {
   page = mappedPageData(page);
 
   if (!page) {
-    return <div>Page not found</div>;
+    return (<NotFound />);
   }
 
   const slugify = (string: string) => {

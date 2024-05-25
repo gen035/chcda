@@ -1,7 +1,8 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
+import NotFound from '@/components/404';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
@@ -20,12 +21,11 @@ interface PageProps {
     };
   };
 }
+const preview = process.env.NEXT_NODE_ENV === 'development';
 
 export async function generateMetadata({ params }: PageProps) {
-  const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug?.join('/');
   const locale = params.lang;
-  
+
   const pageVariables = {
     preview,
     slug: '/',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps) {
     description: data.description,
     openGraph: {
       type: 'article',
-      url: `https://yourwebsite.com/${slug}`,
+      url: `https://yourwebsite.com/`,
       title: data.title,
       description: data.description,
       images: [
@@ -56,20 +56,18 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
-  const preview = process.env.NEXT_NODE_ENV === 'development';
   const locale = params.lang;
-
-   const pageVariables = {
+  const pageVariables = {
     preview,
     slug: '/',
     locale: `${locale}-CA`
-  }
+  };
 
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
 
   if (!page) {
-    return <div>Page not found</div>;
+    return (<NotFound />)
   }
 
   const slugify = (string: string) => {

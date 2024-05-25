@@ -40,6 +40,9 @@ const config: Config = {
       'lightgrey': '#a5a5a5'
     },
     extend: {
+      height: {
+        '110vh': '110vh',
+      },
       spacing: {
         '1': '8px',
         '2': '12px',
