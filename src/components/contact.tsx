@@ -96,7 +96,7 @@ const ContactForm: FC<ContactFormProps> = ({ form }) => {
     
   return (
     <div className="max-w-screen-md mx-auto p-4 z-10">
-      <h1 className='text-center mb-4'>Contact</h1>
+      <h1 className='text-center text-primary mb-4'>Contact</h1>
       {!formSent ? (
         <form className='flex flex-col'>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
@@ -113,7 +113,7 @@ const ContactForm: FC<ContactFormProps> = ({ form }) => {
           </label>
           <textarea placeholder="Bio" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
           <button className={`btn btn-primary ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
-            {!isSubmitting ? 'Submit': <span className="loading loading-dots loading-xs"></span>}
+            {!isSubmitting ? 'Submit': <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
           <div style={{ display: 'none' }}>
             <label htmlFor="honeypot">Honeypot</label>

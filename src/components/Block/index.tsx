@@ -8,7 +8,6 @@ import Stats from './stats';
 import Steps from './steps';
 
 const Block: FC<BlockInterface> = ({ data }) => {
-  console.log('DATA', data)
   const renderView = () => {
     switch (data?.type) {
       case 'hero':

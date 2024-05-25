@@ -96,6 +96,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       return {
         type: 'accordion',
         id: section?.sys?.id,
+        title: section.title,
         items: accordionItemsCollection.items,
       };
     }

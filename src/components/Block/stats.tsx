@@ -30,7 +30,7 @@ const Stats: FC<BlockInterface> = ({ data }) => {
         {data.stats.map((stat: Stat, index: number) => (
           <div key={index} data-id={stat.id} className="stat place-items-center">
             {stat.title && <div className="stat-title">{stat.title}</div>}
-            {stat.subtitle && <div className="stat-value">{formatValue(stat.subtitle)}</div>}
+            {stat.subtitle && <div className="stat-value text-primary">{formatValue(stat.subtitle)}</div>}
             {stat.description && (
               <div className="stat-desc">
                 <ReactMarkdown>{stat.description}</ReactMarkdown>

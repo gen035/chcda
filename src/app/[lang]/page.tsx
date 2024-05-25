@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { getDictionary } from '@/lib/dictionary';
-import ContactForm from '@/components/ContactForm';
+import ContactForm from '@/components/contact';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';

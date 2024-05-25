@@ -15,7 +15,7 @@ const Columns: FC<BlockInterface> = ({ data }) => {
       case 1:
         return 'grid-cols-1 max-w-screen-sm';
       case 2:
-        return 'grid-cols-2 max-w-screen-md';
+        return 'grid-cols-1 max-w-screen-md md:grid-cols-2';
       case 3:
         return 'grid-cols-3 max-w-screen-xl';
       default:
