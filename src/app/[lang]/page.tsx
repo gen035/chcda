@@ -1,16 +1,12 @@
 import Head from 'next/head'
 
-import { getDictionary } from '@/lib/dictionary';
+import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
 import { GET_METADATA } from '@/api/queries/metadata';
 import { GET_PAGE } from '@/api/queries/page';
-
-
-import Block from '@/components/Block';
-
 interface PageProps {
   params: {
     locale: string;
@@ -38,7 +34,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   let data = await fetchData(GET_METADATA, pageVariables);
   data = mappedMetaData(data);
-  console.log(data);
+
   return {
     title: data.title,
     description: data.description,
@@ -60,9 +56,6 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
-
-  const { contact } = await getDictionary(params.lang);
-
   const preview = process.env.NEXT_NODE_ENV === 'development';
   const locale = params.lang;
 
@@ -93,7 +86,7 @@ const Page = async ({ params }: PageProps) => {
           <Block key={index} data={item} />
         ))
       }
-      <ContactForm form={contact.form} />
+      <ContactForm />
     </div>
   );
 };

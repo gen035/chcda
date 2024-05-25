@@ -1,12 +1,10 @@
 "use client"
 import React, { FC, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import emailjs from 'emailjs-com';
 
-interface ContactFormProps {
-  form: any;
-}
-
-const ContactForm: FC<ContactFormProps> = ({ form }) => {
+const ContactForm: FC = () => {
+  const t = useTranslations('contact.form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
 
@@ -100,18 +98,18 @@ const ContactForm: FC<ContactFormProps> = ({ form }) => {
       {!formSent ? (
         <form className='flex flex-col'>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
-            {form.name}
+            {t('name')}
             <input type="text" className="grow" name="name" value={formData.name} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.email ? 'input-error' : ''}`}>
-            {form.email}
+            {t('email')}
             <input type="text" className="grow" name="email" placeholder="email@email.com" value={formData.email} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.subject ? 'input-error' : ''}`}>
-            {form.subject}
+            {t('subject')}
             <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
           </label>
-          <textarea placeholder="Bio" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
+          <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
           <button className={`btn btn-primary ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
             {!isSubmitting ? 'Submit': <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
@@ -121,7 +119,7 @@ const ContactForm: FC<ContactFormProps> = ({ form }) => {
           </div>
         </form>
       ): (<div className='text-center mt-8'>
-        <p>{form.success}</p>
+        <p>{t('success')}</p>
       </div>)}
     </div>
   );

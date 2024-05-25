@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Head from 'next/head';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -17,13 +19,13 @@ import { mappedSettingsData } from '@/api/mapping/settings';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import { i18n } from '../../../i18n-config';
+
 import '../../../styles/index.scss';
 
 export const fetchCache = 'force-no-store';
 
-export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ lang: locale }))
+export function generateStaticParams() {
+  return ['fr','en'].map((locale) => ({locale}));
 }
 
 export default async function RootLayout({
@@ -33,8 +35,8 @@ export default async function RootLayout({
   children: React.ReactNode
   params: { lang: Locale }
 }) {
+  const messages = await getMessages();
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  console.log(params)
   const settingsVariables = {
     preview,
     id: "4EEq37r3UhjLkLhaY2cpta"
@@ -56,15 +58,15 @@ export default async function RootLayout({
   const footer = await fetchData(GET_FOOTER, footerVariables);
   const header = await fetchData(GET_HEADER, headerVariables);
 
-  const { footerText } = await getDictionary(params.lang)
-
   return (
     <html lang={params.lang}>
       <head></head>
       <body>
-        <Header data={mappedHeaderData(header)} locale={params.lang} />
-        {children}
-        <Footer data={mappedFooterData(footer)} footerText={footerText} settings={mappedSettingsData(settings)} />
+        <NextIntlClientProvider messages={messages}>
+          <Header data={mappedHeaderData(header)} locale={params.lang} />
+          {children}
+          <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} />
+        </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
       </body>

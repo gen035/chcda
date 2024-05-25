@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonInterface } from '@/api/mapping/button';
 
 import Newsletter from './newsletter';
@@ -9,25 +10,25 @@ interface FooterProps {
     disclaimer?: string,
     legalLinks?: Array
   },
-  footerText: object,
   settings: {
     phone?: string,
     email?: string
   }
 }
-const Footer: FC<FooterProps> = ({ data, footerText, settings }) => {
+const Footer: FC<FooterProps> = ({ data, settings }) => {
   const year = new Date().getFullYear();
+  const t = useTranslations('footerText');
 
   return (
     <>
       <footer className="footer p-10 bg-base-200 text-base-content">
         <nav>
-          <h6 className="footer-title">{footerText.informations}</h6> 
+          <h6 className="footer-title">{t('informations')}</h6> 
           {settings.email && <a href={`mailto:${settings.email}`} className="link link-hover">{settings.email}</a>}
           {settings.phone && <a href={`tel:${settings.phone}`} className="link link-hover">{settings.phone}</a>}
         </nav> 
         <nav>
-          <h6 className="footer-title">{footerText.legal}</h6> 
+          <h6 className="footer-title">{t('legal')}</h6> 
           {data?.legalLinks?.length > 0 && (
             data.legalLinks.map((link: ButtonInterface, index: number) => (
               <Link href={link.url} key={index} className="link link-hover">{link.text}</Link>
