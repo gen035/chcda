@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     fontFamily: {
-      sans: ["JetBrains Mono"]
+      sans: ["Red Hat Display, sans-serif"]
     },
     screens: {
       sm: '480px',
