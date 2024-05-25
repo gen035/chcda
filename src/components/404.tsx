@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
 import { useTranslations } from 'next-intl'
-import { ButtonInterface } from '@/api/mapping/button';
-
 import Link from 'next/link';
 
 const NotFound: FC = () => {
   const t = useTranslations('notFound');
-
   return (
     <div className="hero h-110vh bg-base-200">
       <div className="hero-content text-center">

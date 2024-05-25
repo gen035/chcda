@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { ButtonInterface } from '@/api/mapping/button';
 import { ImageInterface } from '@/api/mapping/image';
 
 import Link from 'next/link';

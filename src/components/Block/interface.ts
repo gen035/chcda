@@ -12,7 +12,7 @@ export interface Column {
   description?: string;
 }
 export interface BlockInterface {
-  data?: {
+  data: {
     id?: string,
     type?: string;
     title?: string;
@@ -28,15 +28,7 @@ export interface AccordionItem {
   description?: string;
 }
 export interface AccordionInterface {
-  data?: {
-    id?: string;
-    type?: string;
-    title?: string;
-    items?: AccordionItem[];
-  };
-}
-export interface AccordionInterface {
-  data?: {
+  data: {
     id?: string;
     type?: string;
     title?: string;
@@ -44,8 +36,8 @@ export interface AccordionInterface {
   };
 }
 
-export interface StepInterfacte {
-  data?: {
+export interface StepInterface {
+  data: {
     id?: string;
     title?: string;
     subtitle?: string;

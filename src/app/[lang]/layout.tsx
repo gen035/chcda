@@ -1,12 +1,9 @@
-import type { Metadata } from 'next'
-import Head from 'next/head';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { getDictionary } from '@/lib/dictionary';
 import { fetchData } from '@/api/fetchContentfulData';
 
 import { GET_SETTINGS } from '@/api/queries/settings';

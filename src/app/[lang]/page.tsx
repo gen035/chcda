@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
 import NotFound from '@/components/404';
