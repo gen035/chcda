@@ -5,7 +5,7 @@
       "email": "Courriel:",
       "subject": "Sujet:",
       "message": "Message",
-      "submit": "envoyé",
+      "submit": "Envoyer",
       "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons sous peu."
     }
   },
@@ -15,7 +15,7 @@
   },
     "notFound": {
     "title": "Oups ! Page Non Trouvée",
-    "content": "We couldn't find the page you were looking for. It might have been removed, had its name changed, or is temporarily unavailable.",
-    "button": "Back"
+    "content": "Nous n'avons pas trouvé la page que vous cherchiez. Elle a peut-être été supprimée, son nom a été changé, ou elle est temporairement indisponible.",
+    "button": "Retour"
   }
 }
