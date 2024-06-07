@@ -26,6 +26,16 @@ h2 {
   }
 }
 
+.accordion {
+  .accordion-item {
+    ol {
+      list-style: decimal;
+      padding-left: 20px;
+    }
+  }
+}
+
+
 .navbar {
   background: rgba(28, 28, 28, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
