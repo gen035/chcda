@@ -10,6 +10,8 @@
     }
   },
   "footerText": {
+    "application": "Admission",
+    "formLink": "https://docs.google.com/forms/d/e/1FAIpQLSfnim4wklV3mZZIix4RILDkyWw0dbArvibAVJvHQy7SHnyw3A/viewform?usp=sf_link",
     "informations": "Informations",
     "legal": "Légal"
   },

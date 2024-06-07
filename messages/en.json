@@ -10,6 +10,8 @@
     }
   },
   "footerText": {
+    "application": "Application",
+    "formLink": "https://docs.google.com/forms/d/e/1FAIpQLSeiQkFQA9iprNqEnsGwFXSvx0CuhSJkqztjq4qEXTzcV7B32g/viewform?usp=sf_link",
     "informations": "Informations",
     "legal": "Legal"
   },
