@@ -28,6 +28,7 @@ const Hero: FC<BlockInterface> = ({ data }) => {
         {data?.title && <h1 className='order-2'>{data?.title}</h1>}
         {data?.subtitle && <h2 className='order-1'>{data?.subtitle}</h2>}
         {data?.description && <ReactMarkdown className='order-3'>{data.description}</ReactMarkdown>}
+        {data?.button && <a href={data.button.url} target={data.button.target} className='btn btn-primary order-4 w-fit'>{data.button.text}</a>}
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ export interface BlockInterface {
     image?: Image;
     stats?: Stat[];
     columns?: Column[];
+    button?: object;
   };
 }
 export interface AccordionItem {

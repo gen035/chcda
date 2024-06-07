@@ -17,6 +17,7 @@ interface Section {
   subtitle?: string;
   description?: string;
   image?: object;
+  button?: object;
   accordionItemsCollection?: {
     id: string,
     items: any[];
@@ -40,6 +41,7 @@ interface MappedSection {
   layout?: string;
   blocksCollection?: MappedSection[];
   items?: any[];
+  button?: object;
 }
 
 export const mappedPageData = (data: { pageCollection?: { items: Page[] } }) => {
@@ -68,6 +70,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       description,
       image,
       layout,
+      button,
       accordionItemsCollection,
       blocksCollection,
       stepsCollection
@@ -81,6 +84,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       description,
       image,
       layout,
+      button
     };
 
     if (blocksCollection?.items?.length) {
