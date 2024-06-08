@@ -24,7 +24,7 @@ export interface BlockInterface {
     button?: object;
   };
 }
-export interface AccordionItem {
+export interface AccordionItemInterface {
   title?: string;
   description?: string;
 }
@@ -33,7 +33,7 @@ export interface AccordionInterface {
     id?: string;
     type?: string;
     title?: string;
-    items?: AccordionItem[];
+    items?: AccordionItemInterface[];
   };
 }
 
