@@ -19,8 +19,6 @@ import Header from '@/components/header';
 
 import '../../../styles/index.scss';
 
-export const fetchCache = 'force-no-store';
-
 export function generateStaticParams() {
   return ['fr','en'].map((locale) => ({locale}));
 }
@@ -30,7 +28,7 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode
-  params: { lang: Locale }
+  params: { lang: string }
 }) {
   const messages = await getMessages();
   const preview = process.env.NEXT_NODE_ENV === 'development';

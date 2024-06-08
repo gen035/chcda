@@ -1,11 +1,9 @@
-import { ButtonInterface } from './button';
+import { NavigationInterface } from './navigation';
 import { mappedNavigationData } from './navigation';
 
 interface Footer {
-  disclaimer?: string;
-  legalLinks?: [
-    ButtonInterface
-  ]
+  disclaimer?: string | null;
+  legalLinks?: NavigationInterface;
 }
 
 export const mappedFooterData = (data: { footer: Footer }) => {

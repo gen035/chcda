@@ -1,15 +1,10 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { BlockInterface } from './interface';
-interface Stat {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-}
+import { BlockInterface, StatInterface} from './interface';
 
 const Stats: FC<BlockInterface> = ({ data }) => {
-  if (!data?.stats?.length) {
+  if (!data?.sections?.length) {
     return null;
   }
 
@@ -28,7 +23,7 @@ const Stats: FC<BlockInterface> = ({ data }) => {
   return (
     <div data-id={data?.id} className="max-w-screen-md mx-auto px-4">
       <div className="stats stats-vertical shadow w-full md:stats-horizontal">
-        {data.stats.map((stat: Stat, index: number) => (
+        {data.sections.map((stat: StatInterface, index: number) => (
           <div key={index} data-id={stat.id} className="stat place-items-center">
             {stat.title && <div className="stat-title">{stat.title}</div>}
             {stat.subtitle && <div className="stat-value text-primary">{formatValue(stat.subtitle)}</div>}

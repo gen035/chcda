@@ -1,17 +1,10 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { BlockInterface } from './interface';
-
-interface Column {
-  id?: string,
-  title?: string;
-  subtitle?: string;
-  description?: string;
-}
+import { BlockInterface, ColumnInterface } from './interface';
 
 const Columns: FC<BlockInterface> = ({ data }) => {
   const getColumnClass = () => {
-    switch (data?.columns?.length) {
+    switch (data?.sections?.length) {
       case 1:
         return 'grid-cols-1 max-w-screen-sm';
       case 2:
@@ -23,13 +16,13 @@ const Columns: FC<BlockInterface> = ({ data }) => {
     }
   };
 
-  if (!data?.columns?.length) {
+  if (!data?.sections?.length) {
     return null;
   }
 
   return (
     <div data-id={data.id} className={`columns mx-auto grid gap-4 px-4 py-8 ${getColumnClass()}`}>
-      {data.columns.map((column: Column, index: number) => (
+      {data.sections.map((column: ColumnInterface, index: number) => (
         <div key={index} data-id={column.id}className="column">
           {column.title && <h1>{column.title}</h1>}
           {column.subtitle && <h2>{column.subtitle}</h2>}

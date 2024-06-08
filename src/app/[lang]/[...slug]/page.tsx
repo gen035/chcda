@@ -9,21 +9,14 @@ import NotFound from '@/components/404';
 
 interface PageProps {
   params: {
-    locale: string;
-    lang: string[];
+    lang: string;
     slug: string;
-  };
-  page: {
-    title: string;
-    content: {
-      json: string;
-    };
   };
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug?.join('/');
+  const slug = params?.slug;
   const locale = params.lang;
   
   const pageVariables = {
@@ -57,7 +50,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 const Page = async ({ params }: PageProps) => {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug?.join('/');
+  const slug = params?.slug;
   const locale = params.lang;
 
    const pageVariables = {
@@ -84,7 +77,7 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div data-name={slugify(page.name ?? '')} className="translate-y-[-80px]">
       {page?.sections?.length > 0 && page?.sections.map((item: object, index: Number) => (
-          <Block key={index} data={item} />
+          <Block key={`item-${index}`} data={item} />
         ))
       }
     </div>

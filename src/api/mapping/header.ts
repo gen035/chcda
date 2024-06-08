@@ -1,13 +1,10 @@
-import { ButtonInterface } from './button';
 import { ImageInterface } from './image';
 import { mappedImageData } from './image';
-import { mappedNavigationData } from './navigation';
+import { mappedNavigationData, NavigationInterface } from './navigation';
 
 interface Header {
-  logo?: ImageInterface,
-  navigation?: [
-    ButtonInterface
-  ]
+  logo?: ImageInterface | null;
+  navigation?: NavigationInterface | null;
 }
 
 export const mappedHeaderData = (data: { header: Header }) => {

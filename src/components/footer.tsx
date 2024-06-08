@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 interface FooterProps {
   data: {
-    disclaimer?: string,
-    legalLinks?: Array
+    disclaimer?: string | null;
+    legalLinks?: ButtonInterface[] | null;
   },
   settings: {
-    phone?: string,
-    email?: string
+    phone?: string;
+    email?: string;
   }
 }
 const Footer: FC<FooterProps> = ({ data, settings }) => {
@@ -30,11 +30,9 @@ const Footer: FC<FooterProps> = ({ data, settings }) => {
         </nav> 
         <nav>
           <h6 className="footer-title">{t('legal')}</h6> 
-          {data?.legalLinks?.length > 0 && (
-            data.legalLinks.map((link: ButtonInterface, index: number) => (
+          {data?.legalLinks?.map((link: ButtonInterface, index: number) => (
               <Link href={`/${locale}${link.url}`} key={index} className="link link-hover">{link.text}</Link>
-            ))
-          )}
+            ))}
         </nav> 
         <nav>
           <a href={t('formLink')} target="_blank" className="btn btn-primary">{t('application')}</a>

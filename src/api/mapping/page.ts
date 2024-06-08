@@ -92,7 +92,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
         ...baseSection,
         layout,
         type: layout,
-        [layout]: mappedSections(blocksCollection.items),
+        sections: mappedSections(blocksCollection.items),
       };
     }
 

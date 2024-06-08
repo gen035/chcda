@@ -1,12 +1,15 @@
+import { ButtonInterface } from "@/api/mapping/button";
 export interface Image {
   url?: string;
 }
-export interface Stat {
+export interface StatInterface {
+  id?: string;
   title?: string;
   subtitle?: string;
   description?: string;
 }
-export interface Column {
+export interface ColumnInterface {
+  id?: string;
   title?: string;
   subtitle?: string;
   description?: string;
@@ -19,12 +22,12 @@ export interface BlockInterface {
     subtitle?: string;
     description?: string;
     image?: Image;
-    stats?: Stat[];
-    columns?: Column[];
-    button?: object;
+    sections?: StatInterface[] | ColumnInterface[];
+    button?: ButtonInterface;
   };
 }
 export interface AccordionItemInterface {
+  sys?: { id?: string };
   title?: string;
   description?: string;
 }

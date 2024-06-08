@@ -1,6 +1,7 @@
 export interface ImageInterface {
-  url?: string,
-  title?: string
+  __typename?: string;
+  url?: string | null;
+  title?: string | null;
 }
 
 export const mappedImageData = (data: ImageInterface ) => {
