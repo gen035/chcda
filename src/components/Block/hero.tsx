@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { BlockInterface } from './interface';
+import { BlockInterface } from '@/interfaces/block';
 
 const Hero: FC<BlockInterface> = ({ data }) => {
   const divStyle = {

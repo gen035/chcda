@@ -22,7 +22,6 @@
     "graphql": "^16.8.1",
     "negotiator": "^0.6.3",
     "next": "14.2.3",
-    "next-intl": "^3.14.1",
     "next-translate": "^2.6.2",
     "react": "^18",
     "react-dom": "^18",
@@ -30,6 +29,7 @@
     "sass": "^1.77.1"
   },
   "devDependencies": {
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

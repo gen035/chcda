@@ -15,7 +15,7 @@
     "informations": "Informations",
     "legal": "Légal"
   },
-    "notFound": {
+  "notFound": {
     "title": "Oups ! Page Non Trouvée",
     "content": "Nous n'avons pas trouvé la page que vous cherchiez. Elle a peut-être été supprimée, son nom a été changé, ou elle est temporairement indisponible.",
     "button": "Retour"

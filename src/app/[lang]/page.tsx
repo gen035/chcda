@@ -1,6 +1,6 @@
+import { getDictionary } from '@/lib/dictionnary';
 import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
-import NotFound from '@/components/404';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
@@ -47,6 +47,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
+  const messages = await getDictionary(params.lang);
+
   const locale = params.lang;
   const pageVariables = {
     preview,
@@ -56,10 +58,6 @@ const Page = async ({ params }: PageProps) => {
 
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
-
-  if (!page) {
-    return (<NotFound />)
-  }
 
   const slugify = (string: string) => {
     return string
@@ -75,7 +73,7 @@ const Page = async ({ params }: PageProps) => {
           <Block key={`item-${index}`} data={item} />
         ))
       }
-      <ContactForm />
+      <ContactForm messages={messages.contact} />
     </div>
   );
 };

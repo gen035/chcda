@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { AccordionInterface, AccordionItemInterface } from './interface';
+import { AccordionInterface, AccordionItemInterface } from '@/interfaces/accordion';
 
 const Accordion: FC<AccordionInterface> = ({ data }) => {
   if (!data?.items?.length) {

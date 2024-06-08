@@ -1,10 +1,13 @@
 "use client"
 import React, { FC, useState } from 'react';
-import { useTranslations } from 'next-intl';
 import emailjs from 'emailjs-com';
+interface ContactProps {
+  messages: {
+    [key:string]: string | any;
+  };
+}
 
-const ContactForm: FC = () => {
-  const t = useTranslations('contact.form');
+const ContactForm: FC<ContactProps> = ({messages}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
 
@@ -98,20 +101,20 @@ const ContactForm: FC = () => {
       {!formSent ? (
         <form className='flex flex-col'>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
-            {t('name')}
+            {messages.form.name}
             <input type="text" className="grow" name="name" value={formData.name} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.email ? 'input-error' : ''}`}>
-            {t('email')}
+            {messages.form.email}
             <input type="text" className="grow" name="email" placeholder="email@email.com" value={formData.email} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.subject ? 'input-error' : ''}`}>
-            {t('subject')}
+            {messages.form.subject}
             <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
           </label>
           <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
           <button className={`btn btn-primary w-fit ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
-            {!isSubmitting ? t('submit') : <span className="loading loading-dots loading-xs text-primary"></span>}
+            {!isSubmitting ? messages.form.submit : <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
           <div style={{ display: 'none' }}>
             <label htmlFor="honeypot">Honeypot</label>
@@ -119,7 +122,7 @@ const ContactForm: FC = () => {
           </div>
         </form>
       ): (<div className='text-center mt-8'>
-        <p>{t('success')}</p>
+        <p>{messages.form.success}</p>
       </div>)}
     </div>
   );

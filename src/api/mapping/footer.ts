@@ -1,12 +1,7 @@
-import { NavigationInterface } from './navigation';
+import { FooterInterface } from '@/interfaces/footer';
 import { mappedNavigationData } from './navigation';
 
-interface Footer {
-  disclaimer?: string | null;
-  legalLinks?: NavigationInterface;
-}
-
-export const mappedFooterData = (data: { footer: Footer }) => {
+export const mappedFooterData = (data: { footer: FooterInterface }) => {
   return {
     disclaimer: data.footer?.disclaimer ?? null,
     legalLinks: data.footer?.legalLinks ? mappedNavigationData(data.footer.legalLinks) : null

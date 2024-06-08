@@ -1,9 +1,7 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+import { getDictionary } from '@/lib/dictionnary';
 import { fetchData } from '@/api/fetchContentfulData';
 
 import { GET_SETTINGS } from '@/api/queries/settings';
@@ -17,10 +15,11 @@ import { mappedSettingsData } from '@/api/mapping/settings';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
+import { i18n } from '../../../i18n-config';
 import '../../../styles/index.scss';
 
-export function generateStaticParams() {
-  return ['fr','en'].map((locale) => ({locale}));
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ lang: locale }))
 }
 
 export default async function RootLayout({
@@ -30,7 +29,7 @@ export default async function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  const messages = await getMessages();
+  const messages = await getDictionary(params.lang);
   const preview = process.env.NEXT_NODE_ENV === 'development';
   const settingsVariables = {
     preview,
@@ -57,11 +56,9 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <Header data={mappedHeaderData(header)} locale={params.lang} />
-          {children}
-          <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} />
-        </NextIntlClientProvider>
+        <Header data={mappedHeaderData(header)} locale={params.lang} />
+        {children}
+        <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} messages={messages.footerText}/>
         <Analytics />
         <SpeedInsights />
       </body>

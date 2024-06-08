@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { StepInterface, StepItemInterface } from './interface';
+import { StepInterface, StepItemInterface } from '@/interfaces/step';
 
 const Steps: FC<StepInterface> = ({ data }) => {
   if (!data?.items?.length) {

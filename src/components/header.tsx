@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { ImageInterface } from '@/api/mapping/image';
-
 import Link from 'next/link';
-
+import { ImageInterface } from '@/interfaces/image';
 interface HeaderProps {
   data: {
     logo?: ImageInterface | null,

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { BlockInterface, ColumnInterface } from './interface';
+import { BlockInterface } from '@/interfaces/block';
+import { ColumnInterface } from '@/interfaces/column';
 
 const Columns: FC<BlockInterface> = ({ data }) => {
   const getColumnClass = () => {

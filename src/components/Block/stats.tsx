@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { BlockInterface, StatInterface} from './interface';
+import { BlockInterface } from '@/interfaces/block';
+import { StatInterface } from '@/interfaces/stat';
 
 const Stats: FC<BlockInterface> = ({ data }) => {
   if (!data?.sections?.length) {
