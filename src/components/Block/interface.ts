@@ -1,7 +1,5 @@
 import { ButtonInterface } from "@/api/mapping/button";
-export interface Image {
-  url?: string;
-}
+import { ImageInterface } from "@/api/mapping/image";
 export interface StatInterface {
   id?: string;
   title?: string;
@@ -21,7 +19,7 @@ export interface BlockInterface {
     title?: string;
     subtitle?: string;
     description?: string;
-    image?: Image;
+    image?: ImageInterface;
     sections?: StatInterface[] | ColumnInterface[];
     button?: ButtonInterface;
   };
