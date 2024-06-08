@@ -1,7 +1,8 @@
 // fetchContentfulData.ts
 import client from './../lib/contentful';
+import { DocumentNode } from 'graphql';
 
-export const fetchData = async (query, variables: object) => {
+export const fetchData = async (query: DocumentNode, variables: object) => {
   try {
     const { data } = await client.query({
       query,
