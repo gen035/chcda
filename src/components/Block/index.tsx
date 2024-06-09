@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { BlockInterface } from './interface';
+import { BlockInterface } from '@/interfaces/block'
+;
 import Accordion from './accordion';
 import Columns from './columns';
 import Default from './default';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useTranslations } from 'next-intl'
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const NotFound: FC = () => {
   const t = useTranslations('notFound');
@@ -10,7 +10,7 @@ const NotFound: FC = () => {
         <div className="max-w-md">
           <h1 className="text-4xl font-bold">{t('title')}</h1>
           <p className="py-6">{t('content')}</p>
-          <Link href='/' className="btn btn-primary">{t('button')}</Link>
+          <Link href='/' className="btn btn-primary btn-gradient">{t('button')}</Link>
         </div>
       </div>
     </div>

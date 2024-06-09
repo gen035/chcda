@@ -1,48 +1,7 @@
-interface Page {
-  sys?: { id: string };
-  name?: string;
-  slug?: string;
-  metaData?: object;
-  sectionsCollection?: {
-    items: Section[];
-  };
-}
+import { PageInterface } from '@/interfaces/page';
+import { MappedSectionInterface, SectionInterface } from '@/interfaces/sections';
 
-interface Section {
-  sys?: { id: string };
-  type?: string;
-  layout?: string;
-  name?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  image?: object;
-  accordionItemsCollection?: {
-    id: string,
-    items: any[];
-  };
-  blocksCollection?: {
-    items: Section[];
-  };
-  stepsCollection?: {
-    id: {sys?: {id: string}},
-    items: Section[]
-  }
-}
-
-interface MappedSection {
-  id?: string;
-  type?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  image?: object;
-  layout?: string;
-  blocksCollection?: MappedSection[];
-  items?: any[];
-}
-
-export const mappedPageData = (data: { pageCollection?: { items: Page[] } }) => {
+export const mappedPageData = (data: { pageCollection?: { items: PageInterface[] } }) => {
   if (!data?.pageCollection?.items?.length) {
     return null;
   }
@@ -58,8 +17,8 @@ export const mappedPageData = (data: { pageCollection?: { items: Page[] } }) => 
   };
 };
 
-export const mappedSections = (sections: Section[]): MappedSection[] => {
-  return sections.map((section: Section) => {
+export const mappedSections = (sections: SectionInterface[]): MappedSectionInterface[] => {
+  return sections.map((section: SectionInterface) => {
     const {
       sys,
       title,
@@ -68,12 +27,13 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       description,
       image,
       layout,
+      button,
       accordionItemsCollection,
       blocksCollection,
       stepsCollection
     } = section;
   
-    const baseSection: MappedSection = {
+    const baseSection: MappedSectionInterface = {
       id: sys?.id,
       type,
       title,
@@ -81,6 +41,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
       description,
       image,
       layout,
+      button
     };
 
     if (blocksCollection?.items?.length) {
@@ -88,7 +49,7 @@ export const mappedSections = (sections: Section[]): MappedSection[] => {
         ...baseSection,
         layout,
         type: layout,
-        [layout]: mappedSections(blocksCollection.items),
+        sections: mappedSections(blocksCollection.items),
       };
     }
 

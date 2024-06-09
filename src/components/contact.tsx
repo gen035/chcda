@@ -94,7 +94,7 @@ const ContactForm: FC = () => {
     
   return (
     <div className="max-w-screen-md mx-auto p-4 z-10">
-      <h1 className='text-center text-primary mb-4'>Contact</h1>
+      <h1 className='text-center text-gradient text-primary mb-4'>Contact</h1>
       {!formSent ? (
         <form className='flex flex-col'>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
@@ -110,7 +110,7 @@ const ContactForm: FC = () => {
             <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
           </label>
           <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
-          <button className={`btn btn-primary ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
+          <button className={`btn btn-primary btn-gradient w-fit ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
             {!isSubmitting ? t('submit') : <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
           <div style={{ display: 'none' }}>

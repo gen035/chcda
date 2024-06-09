@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { BUTTON_FRAGMENT } from '@/api/queries/fragments/button';
 
 export const SECTIONS_FRAGMENT = gql`
   fragment SectionsFragment on Block {
@@ -12,7 +13,11 @@ export const SECTIONS_FRAGMENT = gql`
     image(locale: "en-CA") {
       url
     }
+    button {
+      ...ButtonFragment
+    }
   }
+ ${BUTTON_FRAGMENT} 
 `;
 
 export const SECTION_BLOCKS_FRAGMENT = gql`

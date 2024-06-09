@@ -1,7 +1,4 @@
-export interface ImageInterface {
-  url?: string,
-  title?: string
-}
+import { ImageInterface } from '@/interfaces/image';
 
 export const mappedImageData = (data: ImageInterface ) => {
   const { url, title } = data;

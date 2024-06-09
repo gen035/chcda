@@ -10,10 +10,12 @@
     }
   },
   "footerText": {
+    "application": "Admission",
+    "formLink": "https://docs.google.com/forms/d/e/1FAIpQLSfnim4wklV3mZZIix4RILDkyWw0dbArvibAVJvHQy7SHnyw3A/viewform?usp=sf_link",
     "informations": "Informations",
     "legal": "Légal"
   },
-    "notFound": {
+  "notFound": {
     "title": "Oups ! Page Non Trouvée",
     "content": "Nous n'avons pas trouvé la page que vous cherchiez. Elle a peut-être été supprimée, son nom a été changé, ou elle est temporairement indisponible.",
     "button": "Retour"
