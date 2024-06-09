@@ -11,7 +11,7 @@ export const fetchData = async (query: DocumentNode, variables: object) => {
 
     return data;
   } catch (error) {
-    console.error("Error fetching posts:", error, query);
+    console.error("Error fetching posts:", error);
     return [];
   }
 };

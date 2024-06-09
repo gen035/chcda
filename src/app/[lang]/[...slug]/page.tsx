@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps) {
     description: data.description,
     openGraph: {
       type: 'article',
-      url: `https://yourwebsite.com/${slug}`,
+      url: `https://lacitedesaines.ca/${locale}/${slug}`,
       title: data.title,
       description: data.description,
       images: [
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 const Page = async ({ params }: PageProps) => {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug;
+  const slug = params?.slug[0];
   const locale = params.lang;
 
    const pageVariables = {
@@ -58,7 +58,7 @@ const Page = async ({ params }: PageProps) => {
     slug,
     locale: `${locale}-CA`
   }
-
+  console.log('vars', pageVariables)
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
 
