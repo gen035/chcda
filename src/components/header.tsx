@@ -18,7 +18,7 @@ const Header: FC<HeaderProps> = ({ data, locale }) => {
         {data.logo && <Link href={homeLink}><img className="w-[200px]" src={data.logo.url ?? ''} title={data.logo.title ?? ''}/></Link>}
       </div>
       <div className="flex-none">
-        <Link href={langSwitcher} className="btn btn-primary">{displayLocale}</Link>
+        <Link href={langSwitcher} className="btn btn-primary btn-gradient">{displayLocale}</Link>
       </div>
     </div>
   );

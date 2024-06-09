@@ -26,7 +26,7 @@ const Columns: FC<BlockInterface> = ({ data }) => {
       {data.sections.map((column: ColumnInterface, index: number) => (
         <div key={index} data-id={column.id}className="column">
           {column.title && <h1>{column.title}</h1>}
-          {column.subtitle && <h2>{column.subtitle}</h2>}
+          {column.subtitle && <h2 className='text-gradient'>{column.subtitle}</h2>}
           {column.description && <ReactMarkdown>{column.description}</ReactMarkdown>}
         </div>
       ))}
