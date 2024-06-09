@@ -1,10 +1,4 @@
-export interface ButtonInterface {
-  text?: string;
-  type?: string,
-  url: string,
-  target?: string,
-  image?: object
-}
+import { ButtonInterface } from '@/interfaces/buttons';
 
 export const mappedButtonData = (data: ButtonInterface ) => {
   const { text, type, url, target, image} = data;

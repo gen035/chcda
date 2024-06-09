@@ -1,6 +1,5 @@
 import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
-import NotFound from '@/components/404';
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
@@ -8,15 +7,8 @@ import { GET_METADATA } from '@/api/queries/metadata';
 import { GET_PAGE } from '@/api/queries/page';
 interface PageProps {
   params: {
-    locale: string;
-    lang: string[];
+    lang: string;
     slug: string;
-  };
-  page: {
-    title: string;
-    content: {
-      json: string;
-    };
   };
 }
 const preview = process.env.NEXT_NODE_ENV === 'development';
@@ -38,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
     description: data.description,
     openGraph: {
       type: 'article',
-      url: `https://yourwebsite.com/`,
+      url: `https://lacitedesaines.ca`,
       title: data.title,
       description: data.description,
       images: [
@@ -64,10 +56,6 @@ const Page = async ({ params }: PageProps) => {
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
 
-  if (!page) {
-    return (<NotFound />)
-  }
-
   const slugify = (string: string) => {
     return string
       .toLowerCase()
@@ -79,7 +67,7 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div data-name={slugify(page.name ?? '')} className="translate-y-[-80px]">
       {page?.sections?.length > 0 && page?.sections.map((item: object, index: Number) => (
-          <Block key={index} data={item} />
+          <Block key={`item-${index}`} data={item} />
         ))
       }
       <ContactForm />

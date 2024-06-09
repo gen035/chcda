@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
-import { ImageInterface } from '@/api/mapping/image';
-
 import Link from 'next/link';
-
+import { ImageInterface } from '@/interfaces/image';
 interface HeaderProps {
   data: {
-    logo?: ImageInterface,
+    logo?: ImageInterface | null,
   },
   locale?: string
 }
@@ -17,7 +15,7 @@ const Header: FC<HeaderProps> = ({ data, locale }) => {
   return (
     <div className="navbar bg-base-100 bg-transparent relative z-10">
       <div className="flex-1">
-        <Link href={homeLink}><img className="w-[200px]" src={data.logo?.url} title={data.logo?.title}/></Link>
+        {data.logo && <Link href={homeLink}><img className="w-[200px]" src={data.logo.url ?? ''} title={data.logo.title ?? ''}/></Link>}
       </div>
       <div className="flex-none">
         <Link href={langSwitcher} className="btn btn-primary">{displayLocale}</Link>

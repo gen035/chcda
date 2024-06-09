@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useTranslations } from 'next-intl'
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const NotFound: FC = () => {
   const t = useTranslations('notFound');

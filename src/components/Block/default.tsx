@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { BlockInterface } from './interface';
+import { BlockInterface } from '@/interfaces/block';
 
 const Default: FC<BlockInterface> = ({ data }) => {
   const getClasses = () => {
     switch(data?.type) {
       case 'full':
-        return 'w-full max-w-screen-lg flex-col-reverse'
+        return 'w-full max-w-screen-md flex-col-reverse'
       default:
         return ''
     }
@@ -16,7 +16,7 @@ const Default: FC<BlockInterface> = ({ data }) => {
   return (
     <section data-id={data?.id} className={`flex mx-auto my-0 px-4 py-0 ${getClasses()}`}>
       <div className="content ">
-        {data?.title && <h1>{data.title}</h1>}
+        {data?.title && <h1 className="text-center text-primary mt-4 mb-4">{data.title}</h1>}
         {data?.subtitle && <h2>{data.subtitle}</h2>}
         {data?.description && <ReactMarkdown>{data.description}</ReactMarkdown>}
       </div>

@@ -5,25 +5,18 @@ import { GET_METADATA } from '@/api/queries/metadata';
 import { GET_PAGE } from '@/api/queries/page';
 
 import Block from '@/components/Block';
-import NotFound from '@/components/404';
+import NotFound from '@/app/[lang]/not-found';
 
 interface PageProps {
   params: {
-    locale: string;
-    lang: string[];
+    lang: string;
     slug: string;
-  };
-  page: {
-    title: string;
-    content: {
-      json: string;
-    };
   };
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug?.join('/');
+  const slug = params?.slug;
   const locale = params.lang;
   
   const pageVariables = {
@@ -34,13 +27,13 @@ export async function generateMetadata({ params }: PageProps) {
 
   let data = await fetchData(GET_METADATA, pageVariables);
   data = mappedMetaData(data);
-  console.log(data);
+
   return {
     title: data.title,
     description: data.description,
     openGraph: {
       type: 'article',
-      url: `https://yourwebsite.com/${slug}`,
+      url: `https://lacitedesaines.ca/${locale}/${slug}`,
       title: data.title,
       description: data.description,
       images: [
@@ -57,7 +50,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 const Page = async ({ params }: PageProps) => {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug?.join('/');
+  const slug = params?.slug[0];
   const locale = params.lang;
 
    const pageVariables = {
@@ -65,7 +58,7 @@ const Page = async ({ params }: PageProps) => {
     slug,
     locale: `${locale}-CA`
   }
-
+  console.log('vars', pageVariables)
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
 
@@ -84,7 +77,7 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div data-name={slugify(page.name ?? '')} className="translate-y-[-80px]">
       {page?.sections?.length > 0 && page?.sections.map((item: object, index: Number) => (
-          <Block key={index} data={item} />
+          <Block key={`item-${index}`} data={item} />
         ))
       }
     </div>

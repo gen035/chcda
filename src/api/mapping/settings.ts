@@ -1,17 +1,6 @@
-interface Settings {
-  phone?: string;
-  email?: string;
-  location?: {
-    lat?: number;
-    lon?: number;
-  };
-  logoSmall?: {
-    url?: string;
-  };
-  logoFull?: string;
-}
+import { SettingsInterface } from '@/interfaces/settings';
 
-export const mappedSettingsData = (data: { settings: Settings }) => {
+export const mappedSettingsData = (data: { settings: SettingsInterface }) => {
   return {
     phone: data.settings.phone ?? '',
     email: data.settings.email ?? '',
