@@ -1,6 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
-
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
@@ -62,8 +59,6 @@ export default async function RootLayout({
             {children}
           <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} />
         </NextIntlClientProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   )

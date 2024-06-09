@@ -14,8 +14,6 @@
     "@contentful/rich-text-types": "^16.3.5",
     "@emailjs/browser": "^4.3.3",
     "@formatjs/intl-localematcher": "^0.5.4",
-    "@vercel/analytics": "^1.2.2",
-    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
     "contentful": "^10.11.0",
     "emailjs-com": "^3.2.0",
