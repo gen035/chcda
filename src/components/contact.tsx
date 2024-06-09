@@ -1,13 +1,10 @@
 "use client"
 import React, { FC, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import emailjs from 'emailjs-com';
-interface ContactProps {
-  messages: {
-    [key:string]: string | any;
-  };
-}
 
-const ContactForm: FC<ContactProps> = ({messages}) => {
+const ContactForm: FC = () => {
+  const t = useTranslations('contact.form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
 
@@ -101,20 +98,20 @@ const ContactForm: FC<ContactProps> = ({messages}) => {
       {!formSent ? (
         <form className='flex flex-col'>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
-            {messages.form.name}
+            {t('name')}
             <input type="text" className="grow" name="name" value={formData.name} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.email ? 'input-error' : ''}`}>
-            {messages.form.email}
+            {t('email')}
             <input type="text" className="grow" name="email" placeholder="email@email.com" value={formData.email} onChange={handleChange} />
           </label>
           <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.subject ? 'input-error' : ''}`}>
-            {messages.form.subject}
+            {t('subject')}
             <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
           </label>
           <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
-          <button className={`btn btn-primary w-fit ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
-            {!isSubmitting ? messages.form.submit : <span className="loading loading-dots loading-xs text-primary"></span>}
+          <button className={`btn btn-primary ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
+            {!isSubmitting ? 'Submit': <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
           <div style={{ display: 'none' }}>
             <label htmlFor="honeypot">Honeypot</label>
@@ -122,7 +119,7 @@ const ContactForm: FC<ContactProps> = ({messages}) => {
           </div>
         </form>
       ): (<div className='text-center mt-8'>
-        <p>{messages.form.success}</p>
+        <p>{t('success')}</p>
       </div>)}
     </div>
   );

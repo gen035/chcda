@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { ButtonInterface } from '@/interfaces/buttons';
 interface FooterProps {
@@ -8,33 +9,31 @@ interface FooterProps {
     legalLinks?: ButtonInterface[] | null;
   };
   locale: string;
-  messages: {
-    [key:string]: string;
-  };
   settings: {
     phone?: string;
     email?: string;
   };
 }
 
-const Footer: FC<FooterProps> = ({ data, locale, messages, settings }) => {
+const Footer: FC<FooterProps> = ({ data, locale, settings }) => {
+  const t = useTranslations('footerText');
   const year = new Date().getFullYear();
   return (
     <>
       <footer className="footer p-10 bg-base-200 text-base-content">
         <nav className='grid-col-2'>
-          <h6 className="footer-title">{messages.informations}</h6> 
+          <h6 className="footer-title">{t('informations')}</h6> 
           {settings.email && <a href={`mailto:${settings.email}`} className="link link-hover">{settings.email}</a>}
           {settings.phone && <a href={`tel:${settings.phone}`} className="link link-hover">{settings.phone}</a>}
         </nav> 
         <nav>
-          <h6 className="footer-title">{messages.legal}</h6> 
+          <h6 className="footer-title">{t('legal')}</h6> 
           {data?.legalLinks?.map((link: ButtonInterface, index: number) => (
               <Link href={`/${locale}${link.url}`} key={index} className="link link-hover">{link.text}</Link>
             ))}
         </nav> 
         <nav>
-          <a href={messages.formLink} target="_blank" className="btn btn-primary">{messages.application}</a>
+          <a href={t('formLink')} target="_blank" className="btn btn-primary">{t('application')}</a>
         </nav>
       </footer> 
       <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">

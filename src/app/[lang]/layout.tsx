@@ -1,9 +1,10 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { getDictionary } from '@/lib/dictionnary';
-import { fetchData } from '@/api/fetchContentfulData';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
+import { fetchData } from '@/api/fetchContentfulData';
 import { GET_SETTINGS } from '@/api/queries/settings';
 import { GET_FOOTER } from '@/api/queries/footer';
 import { GET_HEADER } from '@/api/queries/header';
@@ -15,11 +16,10 @@ import { mappedSettingsData } from '@/api/mapping/settings';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
-import { i18n } from '../../../i18n-config';
 import '../../../styles/index.scss';
 
-export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ lang: locale }))
+export function generateStaticParams() {
+  return ['fr','en'].map((locale) => ({locale}));
 }
 
 export default async function RootLayout({
@@ -29,7 +29,8 @@ export default async function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  const messages = await getDictionary(params.lang);
+  unstable_setRequestLocale(params.lang);
+  const messages = await getMessages();
   const preview = process.env.NEXT_NODE_ENV === 'development';
   const settingsVariables = {
     preview,
@@ -56,9 +57,11 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
-        <Header data={mappedHeaderData(header)} locale={params.lang} />
-        {children}
-        <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} messages={messages.footerText}/>
+        <NextIntlClientProvider messages={messages}>
+          <Header data={mappedHeaderData(header)} locale={params.lang} />
+            {children}
+          <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} />
+        </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
       </body>

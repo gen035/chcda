@@ -1,4 +1,3 @@
-import { getDictionary } from '@/lib/dictionnary';
 import Block from '@/components/Block';
 import ContactForm from '@/components/contact';
 import { fetchData } from '@/api/fetchContentfulData';
@@ -47,8 +46,6 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
-  const messages = await getDictionary(params.lang);
-
   const locale = params.lang;
   const pageVariables = {
     preview,
@@ -73,7 +70,7 @@ const Page = async ({ params }: PageProps) => {
           <Block key={`item-${index}`} data={item} />
         ))
       }
-      <ContactForm messages={messages.contact} />
+      <ContactForm />
     </div>
   );
 };

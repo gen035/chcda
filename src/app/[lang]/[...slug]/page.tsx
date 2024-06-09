@@ -1,5 +1,3 @@
-import { getDictionary } from '@/lib/dictionnary';
-
 import { fetchData } from '@/api/fetchContentfulData';
 import { mappedPageData } from '@/api/mapping/page';
 import { mappedMetaData } from '@/api/mapping/metadata';
@@ -51,7 +49,6 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Page = async ({ params }: PageProps) => {
-  const messages = await getDictionary(params.lang);
   const preview = process.env.NEXT_NODE_ENV === 'development';
   const slug = params?.slug;
   const locale = params.lang;
@@ -66,7 +63,7 @@ const Page = async ({ params }: PageProps) => {
   page = mappedPageData(page);
 
   if (!page) {
-    return (<NotFound messages={messages.notFound}/>);
+    return (<NotFound />);
   }
 
   const slugify = (string: string) => {
