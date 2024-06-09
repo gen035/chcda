@@ -111,7 +111,7 @@ const ContactForm: FC = () => {
           </label>
           <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
           <button className={`btn btn-primary ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
-            {!isSubmitting ? 'Submit': <span className="loading loading-dots loading-xs text-primary"></span>}
+            {!isSubmitting ? t('submit') : <span className="loading loading-dots loading-xs text-primary"></span>}
           </button>
           <div style={{ display: 'none' }}>
             <label htmlFor="honeypot">Honeypot</label>
