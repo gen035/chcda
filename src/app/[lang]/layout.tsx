@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
@@ -10,10 +11,13 @@ import { mappedFooterData } from '@/api/mapping/footer';
 import { mappedHeaderData } from '@/api/mapping/header';
 import { mappedSettingsData } from '@/api/mapping/settings';
 
+import CookieBanner from '@/components/CookieBanner';
+import CookieModal from '@/components/CookieModal';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
 import '../../../styles/index.scss';
+
 
 export function generateStaticParams() {
   return ['fr','en'].map((locale) => ({locale}));
@@ -54,6 +58,7 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA || ""} />
         <NextIntlClientProvider messages={messages}>
           <Header data={mappedHeaderData(header)} locale={params.lang} />
             {children}
