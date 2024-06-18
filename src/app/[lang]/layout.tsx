@@ -62,8 +62,6 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Header data={mappedHeaderData(header)} locale={params.lang} />
             {children}
-            <CookieBanner locale={params.lang} />
-            <CookieModal locale={params.lang} />
           <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} />
         </NextIntlClientProvider>
       </body>
