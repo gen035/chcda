@@ -11,10 +11,13 @@ import { mappedFooterData } from '@/api/mapping/footer';
 import { mappedHeaderData } from '@/api/mapping/header';
 import { mappedSettingsData } from '@/api/mapping/settings';
 
+import CookieBanner from '@/components/CookieBanner';
+import CookieModal from '@/components/CookieModal';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
 import '../../../styles/index.scss';
+
 
 export function generateStaticParams() {
   return ['fr','en'].map((locale) => ({locale}));
@@ -59,6 +62,8 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Header data={mappedHeaderData(header)} locale={params.lang} />
             {children}
+            <CookieBanner locale={params.lang} />
+            <CookieModal locale={params.lang} />
           <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} />
         </NextIntlClientProvider>
       </body>

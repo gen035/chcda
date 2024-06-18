@@ -9,6 +9,21 @@
       "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons sous peu."
     }
   },
+  "cookies": {
+    "text": "Ce site Web utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
+    "policy": "Consulter la politique de cookies",
+    "policyLink": "/politique-de-cookie",
+    "accept": "Accepter",
+    "settings": "Paramètres",
+    "modal": {
+      "title": "Paramètres",
+      "save": "Sauvergarder",
+      "analytics": "Analyse",
+      "analyticsDesc": "Les cookies d'analyse nous aident à comprendre comment les visiteurs interagissent avec notre site web, ce qui nous permet d'améliorer l'expérience utilisateur.",
+      "perso": "Personnalisation",
+      "persoDesc": "Les cookies de personnalisation nous permettent d'adapter le contenu et les publicités à vos intérêts, améliorant ainsi votre expérience de navigation."
+    }
+  },
   "footerText": {
     "application": "Demande d'admission",
     "formLink": "https://docs.google.com/forms/d/e/1FAIpQLSfnim4wklV3mZZIix4RILDkyWw0dbArvibAVJvHQy7SHnyw3A/viewform?usp=sf_link",
