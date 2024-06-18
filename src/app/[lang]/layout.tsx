@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
@@ -54,6 +55,7 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA || ""} />
         <NextIntlClientProvider messages={messages}>
           <Header data={mappedHeaderData(header)} locale={params.lang} />
             {children}
