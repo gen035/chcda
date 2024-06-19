@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Cookies from 'js-cookie';
+import BannerButton from './BannerButton';
 
 interface CookieBannerProps {
   locale: string;
@@ -28,13 +29,6 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
     window.location.reload();
   };
 
-  const openModal = () => {
-    const modal = document.getElementById('cookie-modal') as HTMLDialogElement | null;
-    if(modal) {
-      modal.showModal();
-    }
-  };
-
   return (
     <>
      {displayBanner ? (
@@ -49,7 +43,7 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
           <Link href={`/${locale}${t('policyLink')}`} className="link link-hover text-sm text-blue">{t('policy')}</Link>
         </span>
         <div>
-          <button className="btn btn-sm mr-1" onClick={()=> openModal()}>{t('settings')}</button>
+          <BannerButton classes="btn btn-sm mr-1" tKey="cookies.settings"/>
           <button className="btn btn-sm btn-primary" onClick={() => accept()}>{t('accept')}</button>
         </div>
       </div>
