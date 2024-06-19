@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Cookies from 'js-cookie';
@@ -9,11 +9,18 @@ interface CookieBannerProps {
 }
 
 const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
+  const [displayBanner, setDisplayBanner] = useState(false);
   const t = useTranslations('cookies');
+
+  useEffect(() => {
+    const bannerSeen = Cookies.get('BANNER_SEEN');
+    setDisplayBanner(!bannerSeen);
+  }, []);
 
   const accept = () => {
     Cookies.set('ANALYTICS', 'true', { expires: 365 });
     Cookies.set('PERSO', 'true', { expires: 365 });
+    Cookies.set('BANNER_SEEN', 'true', { expires: 365 });
     forceReload();
   };
 
@@ -30,6 +37,7 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
 
   return (
     <>
+     {displayBanner ? (
       <div role="alert" className="alert fixed bottom-0 rounded-none z-10">
         <svg width="64px" height="64px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
@@ -45,6 +53,7 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
           <button className="btn btn-sm btn-primary" onClick={() => accept()}>{t('accept')}</button>
         </div>
       </div>
+     ) : null}
     </>
   );
 };
