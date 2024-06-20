@@ -1,13 +1,9 @@
 "use client";
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, use, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Cookies from 'js-cookie';
 
-interface CookieModalProps {
-  locale: string;
-}
-
-const CookieModal: FC<CookieModalProps> = ({ locale }) => {
+const CookieModal: FC = () => {
   const t = useTranslations('cookies.modal');
   const [analytics, setAnalytics] = useState(false);
   const [perso, setPerso] = useState(false);
@@ -46,14 +42,19 @@ const CookieModal: FC<CookieModalProps> = ({ locale }) => {
 
   const save = () => {
     if(!perso) {
-      Cookies.remove('NEXT_LOCALE', { path: '' });
       Cookies.remove('PERSO', {path: ''});
+    } else {
+      Cookies.set('PERSO', 'true', { expires: 365 });
     }
 
     if(!analytics) {
       Cookies.remove('ANALYTICS', { path: '' }) // removed!
       removeGACookies();
+    } else {
+      Cookies.set('ANALYTICS', 'true', { expires: 365 });
     }
+
+    window.location.reload();
   };
 
   return (
@@ -76,7 +77,7 @@ const CookieModal: FC<CookieModalProps> = ({ locale }) => {
                 <h3 className='text-lg font-bold text-indigo'>{t('analytics')}</h3>
                 <span className="label-text">{t('analyticsDesc')}</span>
               </div>
-              <input type="checkbox" onChange={() => setAnalytics(false)} checked={analytics} className="checkbox checkbox-primary" />
+              <input type="checkbox" onChange={() => setAnalytics(prev => !prev)} checked={analytics} className="checkbox checkbox-primary" />
             </label>
           </div>
           <div className="form-control">
@@ -85,7 +86,7 @@ const CookieModal: FC<CookieModalProps> = ({ locale }) => {
                 <h3 className='text-lg font-bold text-indigo'>{t('perso')}</h3>
                 <span className="label-text">{t('persoDesc')}</span>
               </div>
-              <input type="checkbox" onChange={() => setPerso(false)} checked={perso} className="checkbox checkbox-primary" />
+              <input type="checkbox" onChange={() => setPerso(prev => !prev)} checked={perso} className="checkbox checkbox-primary" />
             </label>
           </div>
           <div className="modal-action">
