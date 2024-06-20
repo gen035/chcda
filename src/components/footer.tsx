@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import BannerButton from './BannerButton';
 import { ButtonInterface } from '@/interfaces/buttons';
 interface FooterProps {
   data: {
@@ -18,6 +19,7 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({ data, locale, settings }) => {
   const t = useTranslations('footerText');
   const year = new Date().getFullYear();
+
   return (
     <>
       <footer className="footer p-10 bg-base-200 text-base-content">
@@ -31,6 +33,7 @@ const Footer: FC<FooterProps> = ({ data, locale, settings }) => {
           {data?.legalLinks?.map((link: ButtonInterface, index: number) => (
               <Link href={`/${locale}${link.url}`} key={index} className="link link-hover">{link.text}</Link>
             ))}
+          <BannerButton classes="link link-hover" tKey="footerText.settings"/>
         </nav> 
         <nav>
           <a href={t('formLink')} target="_blank" className="btn btn-primary btn-gradient">{t('application')}</a>

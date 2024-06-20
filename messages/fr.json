@@ -18,6 +18,8 @@
     "modal": {
       "title": "Paramètres",
       "save": "Sauvergarder",
+      "essential": "Essentiels",
+      "essentialDesc": "Les cookies essentiels ne collectent pas de données personnelles et ne suivent pas le comportement des utilisateurs à des fins de marketing et sont fondamentaux pour offrir une expérience utilisateur transparente et sécurisée sur les sites Web.",
       "analytics": "Analyse",
       "analyticsDesc": "Les cookies d'analyse nous aident à comprendre comment les visiteurs interagissent avec notre site web, ce qui nous permet d'améliorer l'expérience utilisateur.",
       "perso": "Personnalisation",
@@ -28,7 +30,8 @@
     "application": "Demande d'admission",
     "formLink": "https://docs.google.com/forms/d/e/1FAIpQLSfnim4wklV3mZZIix4RILDkyWw0dbArvibAVJvHQy7SHnyw3A/viewform?usp=sf_link",
     "informations": "Informations",
-    "legal": "Légal"
+    "legal": "Légal",
+    "settings": "Paramètres de cookies"
   },
   "notFound": {
     "title": "Oups ! Page Non Trouvée",

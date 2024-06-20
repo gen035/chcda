@@ -1,6 +1,6 @@
-import { GoogleAnalytics } from '@next/third-parties/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import Cookies from 'js-cookie';
 
 import { fetchData } from '@/api/fetchContentfulData';
 import { GET_SETTINGS } from '@/api/queries/settings';
@@ -14,6 +14,7 @@ import { mappedSettingsData } from '@/api/mapping/settings';
 import CookieBanner from '@/components/CookieBanner';
 import CookieModal from '@/components/CookieModal';
 import Footer from '@/components/footer';
+import GoogleAnalyticsWrapper from '@/components/GoogleAnalyticsWrapper';
 import Header from '@/components/header';
 
 import '../../../styles/index.scss';
@@ -58,10 +59,12 @@ export default async function RootLayout({
     <html lang={params.lang}>
       <head></head>
       <body>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA || ""} />
+        <GoogleAnalyticsWrapper />
         <NextIntlClientProvider messages={messages}>
           <Header data={mappedHeaderData(header)} locale={params.lang} />
             {children}
+            <CookieBanner locale={params.lang} />
+            <CookieModal />
           <Footer data={mappedFooterData(footer)} settings={mappedSettingsData(settings)} locale={params.lang} />
         </NextIntlClientProvider>
       </body>

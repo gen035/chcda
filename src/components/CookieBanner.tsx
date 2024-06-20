@@ -1,19 +1,27 @@
 "use client";
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Cookies from 'js-cookie';
+import BannerButton from './BannerButton';
 
 interface CookieBannerProps {
   locale: string;
 }
 
 const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
+  const [displayBanner, setDisplayBanner] = useState(false);
   const t = useTranslations('cookies');
+
+  useEffect(() => {
+    const bannerSeen = Cookies.get('BANNER_SEEN');
+    setDisplayBanner(!bannerSeen);
+  }, []);
 
   const accept = () => {
     Cookies.set('ANALYTICS', 'true', { expires: 365 });
     Cookies.set('PERSO', 'true', { expires: 365 });
+    Cookies.set('BANNER_SEEN', 'true', { expires: 365 });
     forceReload();
   };
 
@@ -21,15 +29,9 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
     window.location.reload();
   };
 
-  const openModal = () => {
-    const modal = document.getElementById('cookie-modal') as HTMLDialogElement | null;
-    if(modal) {
-      modal.showModal();
-    }
-  };
-
   return (
     <>
+     {displayBanner ? (
       <div role="alert" className="alert fixed bottom-0 rounded-none z-10">
         <svg width="64px" height="64px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
@@ -41,10 +43,11 @@ const CookieBanner: FC<CookieBannerProps> = ({ locale }) => {
           <Link href={`/${locale}${t('policyLink')}`} className="link link-hover text-sm text-blue">{t('policy')}</Link>
         </span>
         <div>
-          <button className="btn btn-sm mr-1" onClick={()=> openModal()}>{t('settings')}</button>
+          <BannerButton classes="btn btn-sm mr-1" tKey="cookies.settings"/>
           <button className="btn btn-sm btn-primary" onClick={() => accept()}>{t('accept')}</button>
         </div>
       </div>
+     ) : null}
     </>
   );
 };

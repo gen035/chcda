@@ -58,7 +58,7 @@ const Page = async ({ params }: PageProps) => {
     slug,
     locale: `${locale}-CA`
   }
-  console.log('vars', pageVariables)
+
   let page = await fetchData(GET_PAGE, pageVariables);
   page = mappedPageData(page);
 
