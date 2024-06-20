@@ -16,7 +16,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const preview = process.env.NEXT_NODE_ENV === 'development';
-  const slug = params?.slug;
+  const slug = params?.slug[0];
   const locale = params.lang;
   
   const pageVariables = {
