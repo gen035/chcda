@@ -61,7 +61,7 @@ const CookieModal: FC = () => {
     <>
       <dialog id="cookie-modal" className="modal">
         <div className="modal-box">
-          <h1 className="font-bold text-xl">{t('title')}</h1>
+          <h1 className="font-bold text-xl text-center">{t('title')}</h1>
           <div className="form-control">
             <label className="label cursor-pointer">
               <div>
