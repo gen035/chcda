@@ -1,6 +1,7 @@
 import { PageInterface } from '@/interfaces/page';
 
 export const mappedMetaData = (data: { pageCollection?: { items: PageInterface[] } }) => {
+
   if (!data?.pageCollection?.items?.length || !data.pageCollection.items[0]?.metaData) {
     return {
       title: 'Cité des ainés',
