@@ -6,7 +6,8 @@
       "subject": "Subject:",
       "message": "Message",
       "submit": "Send",
-      "success": "Thank you! Your message has been sent successfully. We will get back to you shortly."
+      "success": "Thank you! Your message has been sent successfully. We will get back to you shortly.",
+      "error": "An error has occured."
     }
   },
   "cookies": {

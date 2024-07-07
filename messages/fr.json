@@ -6,7 +6,8 @@
       "subject": "Sujet:",
       "message": "Message",
       "submit": "Envoyer",
-      "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons sous peu."
+      "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons sous peu.",
+      "error": "Une erreure est survenue."
     }
   },
   "cookies": {
