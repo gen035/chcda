@@ -7,6 +7,7 @@ const ContactForm: FC = () => {
   const t = useTranslations('contact.form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -85,10 +86,13 @@ const ContactForm: FC = () => {
       })
       .catch((error) => {
         console.error('Email send failed:', error);
+        setHasError(true);
         // Handle error
       })
       .finally(() => {
-        setIsSubmitting(false);
+        setTimeout(() => {
+          setIsSubmitting(false);
+        }, 1000);
       });
   };
     
@@ -96,28 +100,30 @@ const ContactForm: FC = () => {
     <div className="max-w-screen-md mx-auto p-4 z-10">
       <h1 className='text-center text-gradient text-primary mb-4'>Contact</h1>
       {!formSent ? (
-        <form className='flex flex-col'>
-          <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
-            {t('name')}
-            <input type="text" className="grow" name="name" value={formData.name} onChange={handleChange} />
-          </label>
-          <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.email ? 'input-error' : ''}`}>
-            {t('email')}
-            <input type="text" className="grow" name="email" placeholder="email@email.com" value={formData.email} onChange={handleChange} />
-          </label>
-          <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.subject ? 'input-error' : ''}`}>
-            {t('subject')}
-            <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
-          </label>
-          <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
-          <button className={`btn btn-primary btn-gradient w-fit ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
-            {!isSubmitting ? t('submit') : <span className="loading loading-dots loading-xs text-primary"></span>}
-          </button>
-          <div style={{ display: 'none' }}>
-            <label htmlFor="honeypot">Honeypot</label>
-            <input type="text" id="honeypot" name="honeypot" value={formData.honeypot} onChange={handleChange} />
-          </div>
-        </form>
+        <>
+          <form className='flex flex-col'>
+            <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.name ? 'input-error' : ''}`}>
+              {t('name')}
+              <input type="text" className="grow" name="name" value={formData.name} onChange={handleChange} />
+            </label>
+            <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.email ? 'input-error' : ''}`}>
+              {t('email')}
+              <input type="text" className="grow" name="email" placeholder="email@email.com" value={formData.email} onChange={handleChange} />
+            </label>
+            <label className={`input input-bordered flex items-center gap-2 mb-4 ${errors.subject ? 'input-error' : ''}`}>
+              {t('subject')}
+              <input type="text" className="grow" name="subject" value={formData.subject} onChange={handleChange} />
+            </label>
+            <textarea placeholder="Message" className={`textarea textarea-bordered textarea-lg w-full mb-4 ${errors.message ? 'textarea-error' : ''}`} name="message" value={formData.message} onChange={handleChange}></textarea>
+            <button className={`btn btn-primary btn-gradient w-fit ${isSubmitting ? 'btn-disabled' : ''}`} onClick={(e) => handleSubmit(e)}>
+              {!isSubmitting ? t('submit') : <span className="loading loading-dots loading-xs text-white"></span>}
+            </button>
+            <div style={{ display: 'none' }}>
+              <input type="text" id="honeypot" name="honeypot" value={formData.honeypot} onChange={handleChange} />
+            </div>
+          </form>
+          {hasError && <p className='mt-2 text-red'>{t('error')}</p>}
+        </>
       ): (<div className='text-center mt-8'>
         <p>{t('success')}</p>
       </div>)}

@@ -36,7 +36,8 @@ const config: Config = {
       'grey': '#565656',
       'lightblue': '#5f6fb0',
       'lightgrey': '#a5a5a5',
-      'indigo': '#312e81'
+      'indigo': '#312e81',
+      'red': '#d70303'
     },
     extend: {
       height: {
