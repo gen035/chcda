@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 import BannerButton from './BannerButton';
 import { ButtonInterface } from '@/interfaces/buttons';
@@ -13,6 +15,7 @@ interface FooterProps {
   settings: {
     phone?: string;
     email?: string;
+    facebook?: string;
   };
 }
 
@@ -27,6 +30,9 @@ const Footer: FC<FooterProps> = ({ data, locale, settings }) => {
           <h6 className="footer-title">{t('informations')}</h6> 
           {settings.email && <a href={`mailto:${settings.email}`} className="link link-hover">{settings.email}</a>}
           {settings.phone && <a href={`tel:${settings.phone}`} className="link link-hover">{settings.phone}</a>}
+          {settings.facebook && <a href={settings.facebook} target="_blank" className="link link-hover footer-fb">
+            <FontAwesomeIcon icon={faFacebook}/>
+          </a>}
         </nav> 
         <nav>
           <h6 className="footer-title">{t('legal')}</h6> 

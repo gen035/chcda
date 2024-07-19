@@ -5,6 +5,7 @@ export const GET_SETTINGS = gql`
     settings(id: $id, preview: $preview) {
       phone
       email
+      facebook
       location {
         lat
         lon
