@@ -4,6 +4,7 @@ export const mappedSettingsData = (data: { settings: SettingsInterface }) => {
   return {
     phone: data.settings.phone ?? '',
     email: data.settings.email ?? '',
+    facebook: data.settings.facebook ?? '',
     location: {
       lat: data.settings.location?.lat ?? 0,
       lon: data.settings.location?.lon ?? 0
