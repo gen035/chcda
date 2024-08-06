@@ -60,6 +60,10 @@ h2 {
   @apply bg-gradient-to-r from-lightblue to-indigo bg-clip-text text-transparent;
 }
 
+.text-gradient-grey {
+  @apply bg-gradient-to-r from-grey to-lightgrey bg-clip-text text-transparent;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -81,5 +85,18 @@ h2 {
   transition: color 125ms linear;
   &:hover {
     color: #898F9C;
+  }
+}
+
+// Specific
+[data-id="2PtgK9b80mbiXitKmiLNMc"] {
+  .content {
+    p:last-of-type {
+      color:#2D4295;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 22px;
+    }
   }
 }

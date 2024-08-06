@@ -14,10 +14,10 @@ const Default: FC<BlockInterface> = ({ data }) => {
   };
 
   return (
-    <section data-id={data?.id} className={`flex mx-auto my-0 px-4 py-0 ${getClasses()}`}>
+    <section data-id={data?.id} className={`flex mx-auto my-8 px-4 py-0 ${getClasses()}`}>
       <div className="content ">
         {data?.title && <h1 className="text-center text-primary mt-4 mb-4 text-gradient">{data.title}</h1>}
-        {data?.subtitle && <h2>{data.subtitle}</h2>}
+        {data?.subtitle && <h2 className="text-center text-primary mt-4 mb-4 text-gradient-grey">{data.subtitle}</h2>}
         {data?.description && <ReactMarkdown>{data.description}</ReactMarkdown>}
       </div>
       <div className="media">
