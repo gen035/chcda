@@ -22,7 +22,7 @@ const Columns: FC<BlockInterface> = ({ data }) => {
   }
 
   return (
-    <div data-id={data.id} className={`columns mx-auto grid gap-4 px-4 py-8 ${getColumnClass()}`}>
+    <section data-id={data.id} className={`columns mx-auto grid gap-4 px-4 py-8 ${getColumnClass()}`}>
       {data.sections.map((column: ColumnInterface, index: number) => (
         <div key={index} data-id={column.id}className="column">
           {column.title && <h1>{column.title}</h1>}
@@ -30,7 +30,7 @@ const Columns: FC<BlockInterface> = ({ data }) => {
           {column.description && <ReactMarkdown>{column.description}</ReactMarkdown>}
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

@@ -22,7 +22,7 @@ const Stats: FC<BlockInterface> = ({ data }) => {
   };
 
   return (
-    <div data-id={data?.id} className="max-w-screen-md mx-auto px-4">
+    <section data-id={data?.id} className="max-w-screen-md mx-auto px-4">
       <div className="stats stats-vertical shadow w-full md:stats-horizontal">
         {data.sections.map((stat: StatInterface, index: number) => (
           <div key={index} data-id={stat.id} className="stat place-items-center">
@@ -36,7 +36,7 @@ const Stats: FC<BlockInterface> = ({ data }) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
