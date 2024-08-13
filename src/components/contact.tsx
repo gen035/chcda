@@ -97,7 +97,7 @@ const ContactForm: FC = () => {
   };
     
   return (
-    <div className="max-w-screen-md mx-auto p-4 z-10">
+    <section className="max-w-screen-md mx-auto p-4 z-10">
       <h1 className='text-center text-gradient text-primary mb-4'>Contact</h1>
       {!formSent ? (
         <>
@@ -127,7 +127,7 @@ const ContactForm: FC = () => {
       ): (<div className='text-center mt-8'>
         <p>{t('success')}</p>
       </div>)}
-    </div>
+    </section>
   );
 };
 

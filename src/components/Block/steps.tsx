@@ -8,7 +8,7 @@ const Steps: FC<StepInterface> = ({ data }) => {
   }
 
   return (
-    <div data-id={data.id} className="max-w-screen-md mx-auto p-4">
+    <section data-id={data.id} className="max-w-screen-md mx-auto p-4">
       {data.title && <h1 className="text-center text-primary mt-4 mb-4">{data.title}</h1>}
       <ul className="steps w-full">
         {data.items.map((item: StepItemInterface) => (
@@ -16,7 +16,7 @@ const Steps: FC<StepInterface> = ({ data }) => {
         ))}
       </ul>
       
-    </div>
+    </section>
   );
 };
 
